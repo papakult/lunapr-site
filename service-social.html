@@ -457,7 +457,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 
 <section class="section">
   <div class="section-head"><span class="label rv">Как проходит работа</span></div>
-  <div class="steps"><div class="step rv"><h3>Аудит площадок</h3><p>Разбираем текущие каналы и каналы конкурентов: что работает, что нет и почему.</p></div><div class="step rv"><h3>Стратегия</h3><p>Выбираем площадки, форматы и метрики. Утверждаем план на месяц вперёд.</p></div><div class="step rv"><h3>Ведение</h3><p>Производим и публикуем контент, ведём диалог с аудиторией, тестируем форматы.</p></div><div class="step rv"><h3>Рост</h3><p>Ежемесячный разбор цифр: усиливаем то, что работает, отключаем то, что нет.</p></div></div>
+  <div class="steps"><div class="step rv" data-video="social-loop.mp4"><h3>Аудит площадок</h3><p>Разбираем текущие каналы и каналы конкурентов: что работает, что нет и почему.</p></div><div class="step rv" data-video="showreel.mp4"><h3>Стратегия</h3><p>Выбираем площадки, форматы и метрики. Утверждаем план на месяц вперёд.</p></div><div class="step rv" data-video="restaurant_boutique_bw_loop.mp4"><h3>Ведение</h3><p>Производим и публикуем контент, ведём диалог с аудиторией, тестируем форматы.</p></div><div class="step rv" data-video="events.mp4"><h3>Рост</h3><p>Ежемесячный разбор цифр: усиливаем то, что работает, отключаем то, что нет.</p></div></div>
 </section>
 
 <section class="section" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
@@ -698,7 +698,7 @@ if(fine&&!reduced){
   pv.innerHTML='<span class="pv-mark">LUNA</span><video muted loop playsinline preload="none"></video><div class="pv-cap"></div>';
   document.body.appendChild(pv);
   pvV=pv.querySelector('video');pvCap=pv.querySelector('.pv-cap');
-  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+  document.querySelectorAll('a.row[data-video], .step[data-video]').forEach(r=>{
     r.addEventListener('mouseenter',()=>{
       const f='assets/video/'+r.dataset.video;
       pvCap.textContent='Слот · '+r.dataset.video;
