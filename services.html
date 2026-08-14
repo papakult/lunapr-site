@@ -409,7 +409,9 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 </head>
 <body>
 <div class="veil" id="veil"><span class="wordmark">Luna&nbsp;PR<span style="color:var(--stone)">&nbsp;·&nbsp;СНГ</span></span><span class="count" id="vcount">000</span></div>
-
+.row-thumb{display:none}
+  @media(hover:none){.row{position:relative}.row-thumb{display:block;position:absolute;right:0;top:50%;transform:translateY(-50%);width:64px;height:64px;overflow:hidden;border:1px solid var(--line)}.row-thumb video{width:100%;height:100%;object-fit:cover;display:block}.row .meta{display:none}}
+  
 <header>
   <div class="nav">
     <a class="wordmark" href="index.html">Luna&nbsp;PR<span>&nbsp;·&nbsp;СНГ</span></a>
@@ -707,9 +709,18 @@ if(fine&&!reduced){
   pvV.addEventListener('error',()=>pvV.classList.remove('ready'));
 }
 
+  /* ---- mobile: inline video thumbs ---- */
+  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+      if(r.querySelector('.row-thumb'))return;
+      const t=document.createElement('span');t.className='row-thumb';
+      const rv=document.createElement('video');rv.muted=true;rv.loop=true;rv.playsInline=true;rv.autoplay=true;rv.preload='metadata';rv.setAttribute('src','assets/video/'+r.dataset.video);
+      t.appendChild(rv);r.appendChild(t);
+  });
+
 /* ---- инерционный скролл (десктоп) ---- */
 if(fine&&!reduced&&innerWidth>860){
   const content=document.getElementById('smooth');
+
   if(content){
     content.style.position='fixed';content.style.top='0';content.style.left='0';content.style.width='100%';
     content.style.willChange='transform';
