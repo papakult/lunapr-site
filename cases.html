@@ -405,6 +405,8 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .team{grid-template-columns:1fr}
   .hero-cities{gap:20px;flex-wrap:wrap}
 }
+.row-thumb{display:none}
+@media(hover:none){.row{position:relative}.row-thumb{display:block;position:absolute;right:0;top:50%;transform:translateY(-50%);width:64px;height:64px;overflow:hidden;border:1px solid var(--line)}.row-thumb video{width:100%;height:100%;object-fit:cover;display:block}.row .meta{display:none}}
 </style>
 </head>
 <body>
@@ -708,6 +710,14 @@ if(fine&&!reduced){
   pvV.addEventListener('canplay',()=>pvV.classList.add('ready'));
   pvV.addEventListener('error',()=>pvV.classList.remove('ready'));
 }
+
+  /* ---- mobile: inline video thumbs ---- */
+  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+      if(r.querySelector('.row-thumb'))return;
+      const t=document.createElement('span');t.className='row-thumb';
+      const rv=document.createElement('video');rv.muted=true;rv.loop=true;rv.playsInline=true;rv.autoplay=true;rv.preload='metadata';rv.setAttribute('src','assets/video/'+r.dataset.video);
+      t.appendChild(rv);r.appendChild(t);
+  });
 
 /* ---- инерционный скролл (десктоп) ---- */
 if(fine&&!reduced&&innerWidth>860){
