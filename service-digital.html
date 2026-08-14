@@ -250,6 +250,8 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
 }
 .phase-glyph circle{fill:none;stroke:var(--line-strong);stroke-width:.8}
 .phase-glyph path{fill:none;stroke:var(--champagne);stroke-width:.8}
+  .phase-glyph{height:clamp(56px,8vw,110px)}
+  .phase-glyph canvas{width:100%;height:100%;display:block}
 .deliver{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .deliver div{background:var(--ink);padding:clamp(26px,3vw,44px);transition:background .5s}
 .deliver div:hover{background:var(--ink-2)}
@@ -410,6 +412,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 <body>
 <div class="veil" id="veil"><span class="wordmark">Luna&nbsp;PR<span style="color:var(--stone)">&nbsp;·&nbsp;СНГ</span></span><span class="count" id="vcount">000</span></div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <header>
   <div class="nav">
     <a class="wordmark" href="index.html">Luna&nbsp;PR<span>&nbsp;·&nbsp;СНГ</span></a>
@@ -434,7 +437,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 
 <main>
 <section class="page-hero">
-  <svg class="phase-glyph" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44"/><path d="M50 6 A44 44 0 0 1 50 94 A30 30 0 0 1 50 6" fill="rgba(185,164,124,.12)"/></svg>
+      <div class="phase-glyph"><canvas id="moon-canvas"></canvas></div>
   <span class="label">Услуга&nbsp;<span class="n">04</span></span>
   <h1 class="display-l"><span class="mask-line"><span>Сайты</span></span><span class="mask-line"><span>и приложения</span></span></h1>
   <p class="measure rv on rv-d3">Проектируем и разрабатываем сайты и приложения, которые продолжают вашу PR-историю: тот же голос, тот же стиль, понятный путь клиента. От прототипа до запуска и поддержки.</p>
@@ -730,5 +733,65 @@ if(fine&&!reduced&&innerWidth>860){
 }
 })();
 </script>
+
+  /* ---- 3D луна на service-странице ---- */
+  (function(){
+    const cnv=document.getElementById('moon-canvas');
+    if(!cnv||!window.THREE)return;
+    try{
+      const R=new THREE.WebGLRenderer({canvas:cnv,alpha:true,antialias:true});
+      R.setPixelRatio(Math.min(devicePixelRatio,2));
+      const S=new THREE.Scene();
+      const C=new THREE.PerspectiveCamera(34,1,.1,50);C.position.z=6;
+      const mat=new THREE.ShaderMaterial({
+        uniforms:{uT:{value:0},uL:{value:new THREE.Vector3(-.75,.35,.55)}},
+        vertexShader:`varying vec3 vN;varying vec3 vP;
+          void main(){vN=normalize(normalMatrix*normal);vP=position;
+          gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+        fragmentShader:`varying vec3 vN;varying vec3 vP;uniform float uT;uniform vec3 uL;
+          float h(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}
+          float n(vec3 p){vec3 i=floor(p);vec3 f=fract(p);f=f*f*(3.-2.*f);
+            return mix(mix(mix(h(i),h(i+vec3(1,0,0)),f.x),mix(h(i+vec3(0,1,0)),h(i+vec3(1,1,0)),f.x),f.y),
+                       mix(mix(h(i+vec3(0,0,1)),h(i+vec3(1,0,1)),f.x),mix(h(i+vec3(0,1,1)),h(i+vec3(1,1,1)),f.x),f.y),f.z);}
+          void main(){
+            vec3 N=normalize(vN);
+            float f=n(vP*3.2)*.55+n(vP*7.5)*.3+n(vP*16.)*.15;
+            float crat=smoothstep(.42,.58,n(vP*4.7));
+            vec3 base=mix(vec3(.075,.072,.065),vec3(.16,.155,.14),f);
+            base=mix(base,base*.7,crat*.5);
+            vec3 L=normalize(uL);
+            float d=clamp(dot(N,L),0.,1.);
+            d=pow(d,1.35);
+            float rim=pow(1.-clamp(dot(N,vec3(0.,0.,1.)),0.,1.),2.6);
+            vec3 col=base*(0.045+d*1.25)+vec3(.925,.914,.882)*rim*.10;
+            gl_FragColor=vec4(col,1.);}`
+      });
+      const moon=new THREE.Mesh(new THREE.SphereGeometry(1.55,128,128),mat);
+      S.add(moon);
+      let mx=0,my=0;
+      addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5);},{passive:true});
+      function size(){
+        const r=cnv.parentElement.getBoundingClientRect();
+        R.setSize(r.width,r.height,false);
+        C.aspect=r.width/r.height;
+        C.updateProjectionMatrix();
+      }
+      size();addEventListener('resize',size);
+      let vis=true;
+      new IntersectionObserver(es=>{vis=es[0].isIntersecting},{threshold:0}).observe(cnv);
+      const L=mat.uniforms.uL.value;
+      (function tick(t){
+        if(vis){
+          moon.rotation.y=t*.00008+mx*.4;
+          moon.rotation.x=my*.25;
+          L.x+=((mx*2.2-.7)-L.x)*.06;
+          L.y+=((-my*1.6+.35)-L.y)*.06;
+          L.z+=(.6-L.z)*.06;
+          R.render(S,C);
+        }
+        requestAnimationFrame(tick);
+      })(0);
+    }catch(e){}
+  })();
 </body>
 </html>
