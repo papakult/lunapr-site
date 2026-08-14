@@ -458,7 +458,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 
 <section class="section">
   <div class="section-head"><span class="label rv">Как проходит работа</span></div>
-  <div class="steps"><div class="step rv"><h3>Прототип</h3><p>Структура и логика страниц до дизайна: согласовываем смысл, потом форму.</p></div><div class="step rv"><h3>Дизайн</h3><p>Визуальный язык в связке с айдентикой и контентом бренда.</p></div><div class="step rv"><h3>Разработка</h3><p>Чистый код, скорость загрузки, адаптив, базовое SEO с первого дня.</p></div><div class="step rv"><h3>Запуск и поддержка</h3><p>Домен, аналитика, обучение вашей команды работе с админкой.</p></div></div>
+  <div class="steps"><div class="step rv" data-video="laptop_workspace_bw_loop.mp4"><h3>Прототип</h3><p>Структура и логика страниц до дизайна: согласовываем смысл, потом форму.</p></div><div class="step rv" data-video="showreel.mp4"><h3>Дизайн</h3><p>Визуальный язык в связке с айдентикой и контентом бренда.</p></div><div class="step rv" data-video="construction_site_bw_loop.mp4"><h3>Разработка</h3><p>Чистый код, скорость загрузки, адаптив, базовое SEO с первого дня.</p></div><div class="step rv" data-video="hero.mp4"><h3>Запуск и поддержка</h3><p>Домен, аналитика, обучение вашей команды работе с админкой.</p></div></div>
 </section>
 
 <section class="section" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
@@ -699,7 +699,7 @@ if(fine&&!reduced){
   pv.innerHTML='<span class="pv-mark">LUNA</span><video muted loop playsinline preload="none"></video><div class="pv-cap"></div>';
   document.body.appendChild(pv);
   pvV=pv.querySelector('video');pvCap=pv.querySelector('.pv-cap');
-  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+  document.querySelectorAll('a.row[data-video], .step[data-video]').forEach(r=>{
     r.addEventListener('mouseenter',()=>{
       const f='assets/video/'+r.dataset.video;
       pvCap.textContent='Слот · '+r.dataset.video;
