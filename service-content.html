@@ -457,7 +457,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 
 <section class="section">
   <div class="section-head"><span class="label rv">Как проходит работа</span></div>
-  <div class="steps"><div class="step rv"><h3>Бриф</h3><p>Формулируем задачу: площадка, аудитория, действие, которое должен вызвать материал.</p></div><div class="step rv"><h3>Производство</h3><p>Пишем, снимаем, монтируем. Показываем черновики на ранних этапах.</p></div><div class="step rv"><h3>Согласование</h3><p>Правки по существу, без бесконечных кругов: процесс зафиксирован в договоре.</p></div><div class="step rv"><h3>Выпуск</h3><p>Публикуем сами или передаём готовые материалы с исходниками.</p></div></div>
+  <div class="steps"><div class="step rv" data-video="content-loop.mp4"><h3>Бриф</h3><p>Формулируем задачу: площадка, аудитория, действие, которое должен вызвать материал.</p></div><div class="step rv" data-video="filming_workshop_bw_loop.mp4"><h3>Производство</h3><p>Пишем, снимаем, монтируем. Показываем черновики на ранних этапах.</p></div><div class="step rv" data-video="agency.mp4"><h3>Согласование</h3><p>Правки по существу, без бесконечных кругов: процесс зафиксирован в договоре.</p></div><div class="step rv" data-video="cases-reel.mp4"><h3>Выпуск</h3><p>Публикуем сами или передаём готовые материалы с исходниками.</p></div></div>
 </section>
 
 <section class="section" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
@@ -698,7 +698,7 @@ if(fine&&!reduced){
   pv.innerHTML='<span class="pv-mark">LUNA</span><video muted loop playsinline preload="none"></video><div class="pv-cap"></div>';
   document.body.appendChild(pv);
   pvV=pv.querySelector('video');pvCap=pv.querySelector('.pv-cap');
-  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+  document.querySelectorAll('a.row[data-video], .step[data-video]').forEach(r=>{
     r.addEventListener('mouseenter',()=>{
       const f='assets/video/'+r.dataset.video;
       pvCap.textContent='Слот · '+r.dataset.video;
