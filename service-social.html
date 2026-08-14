@@ -254,6 +254,8 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
 .deliver div{background:var(--ink);padding:clamp(26px,3vw,44px);transition:background .5s}
 .deliver div:hover{background:var(--ink-2)}
 .deliver h3{font-family:var(--serif);font-size:21px;margin-bottom:12px}
+  .phase-glyph{height:clamp(56px,8vw,110px)}
+  .phase-glyph canvas{width:100%;height:100%;display:block}
 .deliver p{color:var(--stone);font-size:14.5px}
 .steps{counter-reset:s;border-top:1px solid var(--line)}
 .step{
@@ -411,6 +413,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 <div class="veil" id="veil"><span class="wordmark">Luna&nbsp;PR<span style="color:var(--stone)">&nbsp;·&nbsp;СНГ</span></span><span class="count" id="vcount">000</span></div>
 
 <header>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <div class="nav">
     <a class="wordmark" href="index.html">Luna&nbsp;PR<span>&nbsp;·&nbsp;СНГ</span></a>
     <nav class="menu" aria-label="Основная навигация">
@@ -434,11 +437,10 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 
 <main>
 <section class="page-hero">
-  <svg class="phase-glyph" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44"/><path d="M50 6 A44 44 0 0 1 50 94 A30 30 0 0 0 50 6" fill="rgba(185,164,124,.12)"/></svg>
   <span class="label">Услуга&nbsp;<span class="n">02</span></span>
   <h1 class="display-l"><span class="mask-line"><span>Соцсети</span></span></h1>
   <p class="measure rv on rv-d3">Берём площадки целиком: Telegram, VK, Дзен, YouTube и другие каналы, где есть ваша аудитория. Строим узнаваемый голос бренда, отвечаем подписчикам, договариваемся с авторами, запускаем продвижение.</p>
-</section>
+  <div class="phase-glyph"><canvas id="moon-canvas"></canvas></div>
 
 <section class="section" style="padding-top:0">
   <div class="section-head"><span class="label rv">Что входит</span></div>
@@ -650,8 +652,8 @@ if(cnv&&!reduced&&window.THREE){
       const r=cnv.parentElement.getBoundingClientRect();
       R.setSize(r.width,r.height,false);
       C.aspect=r.width/r.height;
-      moon.position.x=r.width>860?1.9:0;   /* справа от заголовка на десктопе */
-      moon.position.y=r.width>860?.55:1.1;
+        moon.position.x=0;
+        moon.position.y=0;
       C.updateProjectionMatrix();
     }
     size();addEventListener('resize',size);
