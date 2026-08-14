@@ -468,7 +468,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 
 <section class="section">
   <div class="section-head"><span class="label rv">Как проходит работа</span></div>
-  <div class="steps"><div class="step rv"><h3>Аудит и позиционирование</h3><p>Определяем, в каких темах бренд имеет право говорить как эксперт, и где его аудитория читает медиа.</p></div><div class="step rv"><h3>Медиаплан</h3><p>Список изданий, тем и форматов на квартал. Согласовываем и фиксируем.</p></div><div class="step rv"><h3>Производство и питчинг</h3><p>Пишем материалы, согласовываем с вами, предлагаем редакциям, сопровождаем до выхода.</p></div><div class="step rv"><h3>Отчёт</h3><p>Ссылки на публикации и статистика. Каждый выход можно проверить.</p></div></div>
+  <div class="steps"><div class="step rv" data-video="media-loop.mp4"><h3>Аудит и позиционирование</h3><p>Определяем, в каких темах бренд имеет право говорить как эксперт, и где его аудитория читает медиа.</p></div><div class="step rv" data-video="press_conference_bw_loop.mp4"><h3>Медиаплан</h3><p>Список изданий, тем и форматов на квартал. Согласовываем и фиксируем.</p></div><div class="step rv" data-video="content-loop.mp4"><h3>Производство и питчинг</h3><p>Пишем материалы, согласовываем с вами, предлагаем редакциям, сопровождаем до выхода.</p></div><div class="step rv" data-video="financial_district_bw_loop.mp4"><h3>Отчёт</h3><p>Ссылки на публикации и статистика. Каждый выход можно проверить.</p></div></div>
 </section>
 
 <section class="section" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
@@ -709,11 +709,11 @@ if(fine&&!reduced){
   pv.innerHTML='<span class="pv-mark">LUNA</span><video muted loop playsinline preload="none"></video><div class="pv-cap"></div>';
   document.body.appendChild(pv);
   pvV=pv.querySelector('video');pvCap=pv.querySelector('.pv-cap');
-  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+    document.querySelectorAll('a.row[data-video], .step[data-video]').forEach(r=>{
     r.addEventListener('mouseenter',()=>{
       const f='assets/video/'+r.dataset.video;
       pvCap.textContent='Слот · '+r.dataset.video;
-      if(pvV.getAttribute('src')!==f){pvV.classList.remove('ready');pvV.src=f;pvV.load();}
+              if(pvV.getAttribute('src')!==f){pvV.classList.remove('ready');pvV.src=f;pvV.load();}
       pvV.play().catch(()=>{});
       pvOn=true;pv.classList.add('on');
     });
