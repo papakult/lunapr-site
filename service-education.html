@@ -458,7 +458,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 
 <section class="section">
   <div class="section-head"><span class="label rv">Как проходит работа</span></div>
-  <div class="steps"><div class="step rv"><h3>Диагностика</h3><p>Смотрим текущий контент команды и определяем, чего не хватает до результата.</p></div><div class="step rv"><h3>Практикум</h3><p>Один или два дня интенсивной практики у вас, либо в Сочи или Москве. Снимаем реальные ролики.</p></div><div class="step rv"><h3>Сопровождение</h3><p>Месяц разборов первых самостоятельных работ команды.</p></div><div class="step rv"><h3>Передача</h3><p>Команда работает сама. Мы остаёмся на связи для сложных задач.</p></div></div>
+  <div class="steps"><div class="step rv" data-video="filming_workshop_bw_loop.mp4"><h3>Диагностика</h3><p>Смотрим текущий контент команды и определяем, чего не хватает до результата.</p></div><div class="step rv" data-video="events.mp4"><h3>Практикум</h3><p>Один или два дня интенсивной практики у вас, либо в Сочи или Москве. Снимаем реальные ролики.</p></div><div class="step rv" data-video="agency.mp4"><h3>Сопровождение</h3><p>Месяц разборов первых самостоятельных работ команды.</p></div><div class="step rv" data-video="showreel.mp4"><h3>Передача</h3><p>Команда работает сама. Мы остаёмся на связи для сложных задач.</p></div></div>
 </section>
 
 <section class="section" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
@@ -699,7 +699,7 @@ if(fine&&!reduced){
   pv.innerHTML='<span class="pv-mark">LUNA</span><video muted loop playsinline preload="none"></video><div class="pv-cap"></div>';
   document.body.appendChild(pv);
   pvV=pv.querySelector('video');pvCap=pv.querySelector('.pv-cap');
-  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+  document.querySelectorAll('a.row[data-video], .step[data-video]').forEach(r=>{
     r.addEventListener('mouseenter',()=>{
       const f='assets/video/'+r.dataset.video;
       pvCap.textContent='Слот · '+r.dataset.video;
