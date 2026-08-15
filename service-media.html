@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
 :root{
@@ -257,6 +257,22 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
 }
 .phase-glyph circle{fill:none;stroke:var(--line-strong);stroke-width:.8}
 .phase-glyph path{fill:none;stroke:var(--champagne);stroke-width:.8}
+
+/* ---------- крупная видео/3D-интеграция в шапке услуги ---------- */
+.hero-clip{
+  position:absolute;top:calc(84px + clamp(40px,7vw,90px));right:var(--pad);
+  width:clamp(320px,42vw,620px);aspect-ratio:6/5;overflow:hidden;
+  border:1px solid var(--line-strong);
+  background:radial-gradient(80% 100% at 30% 0%, #1b1915 0%, #0c0b09 70%);
+}
+.hero-clip video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.2s var(--ease);filter:saturate(.85) contrast(1.02);
+}
+.hero-clip video.ready{opacity:1}
+.hero-clip canvas{position:absolute;inset:0;width:100%;height:100%}
+.page-hero.has-clip{padding-right:clamp(360px,46vw,680px)}
+
 .deliver{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .deliver div{background:var(--ink);padding:clamp(26px,3vw,44px);transition:background .5s}
 .deliver div:hover{background:var(--ink-2)}
@@ -377,6 +393,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   font-family:var(--serif);font-size:44px;color:transparent;-webkit-text-stroke:1px rgba(236,233,225,.14);
 }
+.preview:has(video.ready) .pv-mark{display:none}
 @media(max-width:860px){.preview{display:none}}
 
 /* ---------- reveal ---------- */
@@ -406,7 +423,8 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .row .meta{text-align:left;grid-column:2}
   .row .arr{display:none}
   .case-row{grid-template-columns:48px 1fr}
-  .scroll-hint,.phase-glyph{display:none}
+  .scroll-hint,.phase-glyph,.hero-clip{display:none}
+  .page-hero.has-clip{padding-right:var(--pad)}
 }
 @media (max-width:560px){
   .team{grid-template-columns:1fr}
@@ -440,16 +458,42 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 <div id="smooth">
 
 <main>
-<section class="page-hero">
-  <svg class="phase-glyph" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44"/><path d="M50 6 A44 44 0 0 1 50 94 A62 62 0 0 0 50 6" fill="rgba(185,164,124,.12)"/></svg>
+<section class="page-hero has-clip">
   <span class="label">Услуга&nbsp;<span class="n">01</span></span>
   <h1 class="display-l"><span class="mask-line"><span>Публикации</span></span><span class="mask-line"><span>в СМИ</span></span></h1>
   <p class="measure rv on rv-d3">Готовим экспертные материалы, комментарии и истории брендов, затем размещаем их в изданиях России и СНГ. Фокус: русскоязычные медиа, где живёт ваша аудитория. Для отдельных задач подключаем зарубежные площадки.</p>
+  <div class="hero-clip rv" aria-hidden="true">
+    <canvas id="moon-canvas"></canvas>
+  </div>
+</section>
+
+<section class="section manifesto" style="padding-top:0">
+  <div class="two-col">
+    <div>
+      <span class="label rv">Зачем это нужно</span>
+      <div class="orbit-art rv" aria-hidden="true">
+        <svg viewBox="0 0 300 220">
+          <ellipse class="o g1" cx="150" cy="110" rx="120" ry="46"></ellipse>
+          <ellipse class="o g2" cx="150" cy="110" rx="80" ry="70"></ellipse>
+          <circle class="p" cx="270" cy="110" r="5"></circle>
+        </svg>
+      </div>
+    </div>
+    <p class="big rv rv-d1">Если тебя не знает интернет — <em>тебя не существует.</em> Партнёр перед встречей гуглит ваше имя. Инвестор проверяет вас до первого письма. Журналист ищет источник, на который можно сослаться. Если там пусто, или пишут не то, что нужно — решение принимают без вас, по тому, что нашлось первым. Публикации в СМИ — это не упоминания ради упоминаний: это то, что оказывается на первой странице поиска в момент, когда о вас узнают, и всё чаще — то, что отвечает нейросеть, когда её спрашивают, кто вы.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="facts rv">
+    <div class="fact"><span class="serif">3 000+</span><p>изданий в базе размещения по России и СНГ — деловые, отраслевые, федеральные.</p></div>
+    <div class="fact"><span class="serif">15 000+</span><p>площадок по всему миру, включая рынок США, для международных задач.</p></div>
+    <div class="fact"><span class="serif">30 дней</span><p>до первых заметных изменений в выдаче поиска по вашему имени или бренду.</p></div>
+  </div>
 </section>
 
 <section class="section" style="padding-top:0">
   <div class="section-head"><span class="label rv">Что входит</span></div>
-  <div class="deliver"><div class="rv"><h3>Экспертные статьи</h3><p>Авторские колонки и аналитика от лица руководителей и специалистов компании.</p></div><div class="rv"><h3>Комментарии</h3><p>Оперативные комментарии для журналистов по повестке вашей отрасли.</p></div><div class="rv"><h3>Истории брендов</h3><p>Материалы о продукте, запуске или команде, интересные редакциям, а не только вам.</p></div><div class="rv"><h3>Международные выходы</h3><p>Адаптация истории под зарубежную аудиторию и работа с мировыми СМИ по запросу.</p></div></div>
+  <div class="deliver"><div class="rv"><h3>Экспертные статьи</h3><p>Авторские колонки и аналитика от лица руководителей и специалистов компании — тексты, которые редакции берут, потому что в них есть экспертиза, а не реклама.</p></div><div class="rv"><h3>Комментарии</h3><p>Оперативные комментарии для журналистов по повестке вашей отрасли — попадаем в материал по горячим следам, а не когда тема уже остыла.</p></div><div class="rv"><h3>Истории брендов</h3><p>Материалы о продукте, запуске или команде, интересные редакциям, а не только вам — ищем угол, который цепляет читателя, а не пресс-релиз в чистом виде.</p></div><div class="rv"><h3>Международные выходы</h3><p>Адаптация истории под зарубежную аудиторию и работа с мировыми СМИ по запросу — от деловых изданий Tier 1 до отраслевых площадок нужного рынка.</p></div></div>
 </section>
 
 <section class="film rv">
@@ -619,7 +663,7 @@ requestAnimationFrame(loop);
 const vid=document.querySelector('.hero-media video');
 if(vid){vid.addEventListener('canplay',()=>vid.classList.add('ready'));}
 
-/* ---- 3D луна (WebGL, шейдер), пока нет видео ---- */
+/* ---- 3D луна (WebGL, шейдер) ---- */
 const cnv=document.getElementById('moon-canvas');
 if(cnv&&!reduced&&window.THREE){
   try{
@@ -643,7 +687,7 @@ if(cnv&&!reduced&&window.THREE){
           float crat=smoothstep(.42,.58,n(vP*4.7));
           vec3 base=mix(vec3(.075,.072,.065),vec3(.16,.155,.14),f);
           base=mix(base,base*.7,crat*.5);
-          vec3 L=normalize(uL);                                 /* свет следует за курсором */
+          vec3 L=normalize(uL);                                 /* свет тянется к курсору */
           float d=clamp(dot(N,L),0.,1.);
           d=pow(d,1.35);
           float rim=pow(1.-clamp(dot(N,vec3(0.,0.,1.)),0.,1.),2.6);
@@ -658,8 +702,8 @@ if(cnv&&!reduced&&window.THREE){
       const r=cnv.parentElement.getBoundingClientRect();
       R.setSize(r.width,r.height,false);
       C.aspect=r.width/r.height;
-      moon.position.x=r.width>860?1.9:0;   /* справа от заголовка на десктопе */
-      moon.position.y=r.width>860?.55:1.1;
+      moon.position.x=0;
+      moon.position.y=.1;
       C.updateProjectionMatrix();
     }
     size();addEventListener('resize',size);
@@ -668,20 +712,17 @@ if(cnv&&!reduced&&window.THREE){
     const L=mat.uniforms.uL.value;
     (function tick(t){
       if(vis){
-        moon.rotation.y=t*.00005+scrollY*.0006+mx*.35;   /* скролл вращает сцену */
+        moon.rotation.y=t*.00006+mx*.4;
         moon.rotation.x=my*.2;
-        L.x+=((mx*2.2-.7)-L.x)*.06;                       /* свет тянется к курсору */
+        L.x+=((mx*2.2-.7)-L.x)*.06;
         L.y+=((-my*1.6+.35)-L.y)*.06;
         L.z+=(.6-L.z)*.06;
         R.render(S,C);
       }
       requestAnimationFrame(tick);
     })(0);
-  }catch(e){/* нет WebGL: остаётся постер */}
+  }catch(e){/* нет WebGL: остаётся фон */}
 }
-
-/* ---- скролл-история hero: заголовок уходит, сцена остаётся ---- */
-const heroH1=document.querySelector('.hero h1');
 
 /* ---- живое время офисов ---- */
 const clockEl=document.getElementById('clock');
