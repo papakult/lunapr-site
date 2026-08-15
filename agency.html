@@ -730,6 +730,7 @@ clk();setInterval(clk,20000);
 document.querySelectorAll('.film-frame video').forEach(v=>{
   v.addEventListener('canplay',()=>{v.classList.add('ready');v.play().catch(()=>{});});
 });
+  document.querySelectorAll('.photo video').forEach(v=>{v.load();v.play().catch(()=>{});});
 
 /* ---- плавающее превью для строк кейсов ---- */
 let pv=null,pvV=null,pvCap=null,pvOn=false,pvX=0,pvY=0;
