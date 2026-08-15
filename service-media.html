@@ -479,7 +479,8 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
         </svg>
       </div>
     </div>
-    <p class="big rv rv-d1">Если тебя не знает интернет — <em>тебя не существует.</em> Партнёр перед встречей гуглит ваше имя. Инвестор проверяет вас до первого письма. Журналист ищет источник, на который можно сослаться. Если там пусто, или пишут не то, что нужно — решение принимают без вас, по тому, что нашлось первым. Публикации в СМИ — это не упоминания ради упоминаний: это то, что оказывается на первой странице поиска в момент, когда о вас узнают, и всё чаще — то, что отвечает нейросеть, когда её спрашивают, кто вы.</p>
+    <p class="big rv rv-d1">Если тебя не знает интернет — <em>тебя не существует.</em></p>
+      <p class="measure rv rv-d2" style="margin-top:28px">Партнёр перед встречей гуглит ваше имя. Инвестор проверяет вас до первого письма. Журналист ищет источник, на который можно сослаться. Если там пусто, или пишут не то, что нужно — решение принимают без вас, по тому, что нашлось первым. Публикации в СМИ — это не упоминания ради упоминаний: это то, что оказывается на первой странице поиска в момент, когда о вас узнают, и всё чаще — то, что отвечает нейросеть, когда её спрашивают, кто вы.</p>
   </div>
 </section>
 
@@ -616,15 +617,7 @@ if(!reduced){
 let curX=innerWidth/2,curY=innerHeight/2,ringX=curX,ringY=curY;
 let dot=null,ring=null;
 if(fine&&!reduced){
-  document.documentElement.classList.add('has-cursor');
-  dot=document.createElement('div');dot.className='cur-dot';
-  ring=document.createElement('div');ring.className='cur-ring';
-  document.body.append(ring,dot);
   addEventListener('mousemove',e=>{curX=e.clientX;curY=e.clientY},{passive:true});
-  document.querySelectorAll('a,button,select,label,input,textarea').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.classList.add('hot'));
-    el.addEventListener('mouseleave',()=>ring.classList.remove('hot'));
-  });
   document.querySelectorAll('.action').forEach(el=>{
     el.addEventListener('mousemove',e=>{
       const r=el.getBoundingClientRect();

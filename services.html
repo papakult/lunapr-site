@@ -588,15 +588,7 @@ if(!reduced){
 let curX=innerWidth/2,curY=innerHeight/2,ringX=curX,ringY=curY;
 let dot=null,ring=null;
 if(fine&&!reduced){
-  document.documentElement.classList.add('has-cursor');
-  dot=document.createElement('div');dot.className='cur-dot';
-  ring=document.createElement('div');ring.className='cur-ring';
-  document.body.append(ring,dot);
   addEventListener('mousemove',e=>{curX=e.clientX;curY=e.clientY},{passive:true});
-  document.querySelectorAll('a,button,select,label,input,textarea').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.classList.add('hot'));
-    el.addEventListener('mouseleave',()=>ring.classList.remove('hot'));
-  });
   document.querySelectorAll('.action').forEach(el=>{
     el.addEventListener('mousemove',e=>{
       const r=el.getBoundingClientRect();
