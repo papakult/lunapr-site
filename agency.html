@@ -12,6 +12,8 @@
 <meta property="og:url" content="https://lunapr.ru/agency.html">
 <meta property="og:image" content="https://lunapr.ru/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100f0d'/%3E%3Cpath d='M21 4a12 12 0 1 0 0 24 9.5 9.5 0 1 1 0-24z' fill='%23b9a47c'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100f0d'/%3E%3Cpath d='M21 4a12 12 0 1 0 0 24 9.5 9.5 0 1 1 0-24z' fill='%23b9a47c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet">
@@ -46,6 +48,11 @@ body::after{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 ::selection{background:var(--bone);color:var(--ink)}
+html{scrollbar-width:thin;scrollbar-color:var(--line-strong) var(--ink)}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--line-strong);border:2px solid var(--ink);background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:var(--champagne)}
 a{color:inherit;text-decoration:none}
 img,video{max-width:100%;display:block}
 .serif{font-family:var(--serif);font-weight:400}
@@ -229,10 +236,6 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
   content:"портрет · ч/б";position:absolute;bottom:14px;left:14px;
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#4a473f;
 }
-  .member .photo[style*="background-image"]::after{content:none}
-  .member .photo:has(video)::after{content:none}
-        .member .photo:has(source[src*="dmitry"]) video{transform:scale(1.2)}
-        .member .photo:has(source[src*="anna"]) video{transform:scale(1.35)}
 .member h3{font-family:var(--sans);font-weight:500;font-size:15.5px;margin-top:18px}
 .member .role{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--champagne);margin-top:4px}
 .member p{color:var(--stone);font-size:13.5px;margin-top:10px;line-height:1.6}
@@ -248,12 +251,25 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
 .page-hero .label{margin-bottom:30px}
 .page-hero h1{max-width:14ch}
 .page-hero .measure{margin-top:36px}
+.page-hero.has-clip{padding-right:clamp(360px,46vw,680px)}
+@media(max-width:860px){.page-hero.has-clip{padding-right:var(--pad)}}
 .phase-glyph{
   position:absolute;top:calc(84px + clamp(60px,10vw,130px));right:var(--pad);
   width:clamp(56px,8vw,110px);opacity:.85;
 }
 .phase-glyph circle{fill:none;stroke:var(--line-strong);stroke-width:.8}
 .phase-glyph path{fill:none;stroke:var(--champagne);stroke-width:.8}
+.hero-clip{
+  position:absolute;top:calc(84px + clamp(40px,7vw,90px));right:var(--pad);
+  width:clamp(320px,42vw,620px);aspect-ratio:6/5;overflow:hidden;
+  border:1px solid var(--line-strong);
+  background:radial-gradient(80% 100% at 30% 0%, #1b1915 0%, #0c0b09 70%);
+}
+.hero-clip video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.2s var(--ease);filter:saturate(.85) contrast(1.02);
+}
+.hero-clip video.ready{opacity:1}
 .deliver{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .deliver div{background:var(--ink);padding:clamp(26px,3vw,44px);transition:background .5s}
 .deliver div:hover{background:var(--ink-2)}
@@ -403,19 +419,17 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .row .meta{text-align:left;grid-column:2}
   .row .arr{display:none}
   .case-row{grid-template-columns:48px 1fr}
-  .scroll-hint,.phase-glyph{display:none}
+  .scroll-hint,.phase-glyph,.hero-clip{display:none}
 }
 @media (max-width:560px){
   .team{grid-template-columns:1fr}
   .hero-cities{gap:20px;flex-wrap:wrap}
 }
-  .row-thumb{display:none}
-  @media(hover:none){.row{position:relative}.row-thumb{display:block;position:absolute;right:0;top:50%;transform:translateY(-50%);width:64px;height:64px;overflow:hidden;border:1px solid var(--line)}.row-thumb video{width:100%;height:100%;object-fit:cover;display:block}.row .meta{display:none}}
 </style>
 </head>
 <body>
 <div class="veil" id="veil"><span class="wordmark">Luna&nbsp;PR<span style="color:var(--stone)">&nbsp;·&nbsp;СНГ</span></span><span class="count" id="vcount">000</span></div>
-  
+
 <header>
   <div class="nav">
     <a class="wordmark" href="index.html">Luna&nbsp;PR<span>&nbsp;·&nbsp;СНГ</span></a>
@@ -439,13 +453,18 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 <div id="smooth">
 
 <main>
-<section class="page-hero">
+<section class="page-hero has-clip">
   <span class="label">Агентство</span>
   <h1 class="display-l">
     <span class="mask-line"><span>Локальная экспертиза</span></span>
     <span class="mask-line"><span>как принцип</span></span>
   </h1>
   <p class="measure rv on rv-d3">Мы работаем на рынке, который понимаем: Россия и СНГ. Знаем, как устроены редакции, что читает и смотрит аудитория, какие форматы работают в Telegram, а какие в деловой прессе. Эта точность и есть наша ценность.</p>
+  <div class="hero-clip rv" aria-hidden="true">
+    <video muted loop playsinline autoplay preload="auto">
+      <source src="assets/video/case-06.mp4" type="video/mp4">
+    </video>
+  </div>
 </section>
 
 <section class="section">
@@ -465,11 +484,11 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
     <span class="label rv">Без имён, по направлениям</span>
   </div>
   <div class="rows">
-<a class="row rv" href="services.html" data-video="press_conference_bw_loop.mp4"><span class="idx">01</span><span class="title">Публичные персоны и политика</span><span class="meta">Личный бренд · Репутация</span><span class="arr"></span></a>
-<a class="row rv" href="services.html" data-video="construction_site_bw_loop.mp4"><span class="idx">02</span><span class="title">Промышленность и девелопмент</span><span class="meta">B2B · GR-контур</span><span class="arr"></span></a>
-<a class="row rv" href="services.html" data-video="financial_district_bw_loop.mp4"><span class="idx">03</span><span class="title">Финансы и инвестиции</span><span class="meta">Экспертиза · Деловые СМИ</span><span class="arr"></span></a>
-<a class="row rv" href="services.html" data-video="private_clinic_bw_loop.mp4"><span class="idx">04</span><span class="title">Медицина, спорт, красота</span><span class="meta">Эксперты · Клиники · Бренды</span><span class="arr"></span></a>
-    <a class="row rv" href="services.html" data-video="restaurant_boutique_bw_loop.mp4"><span class="idx">05</span><span class="title">Ритейл, HoReCa, сервис</span><span class="meta">Запуски · Соцсети</span><span class="arr"></span></a>
+    <div class="row rv"><span class="idx">01</span><span class="title">Публичные персоны и политика</span><span class="meta">Личный бренд · Репутация</span><span class="arr"></span></div>
+    <div class="row rv"><span class="idx">02</span><span class="title">Промышленность и девелопмент</span><span class="meta">B2B · GR-контур</span><span class="arr"></span></div>
+    <div class="row rv"><span class="idx">03</span><span class="title">Финансы и инвестиции</span><span class="meta">Экспертиза · Деловые СМИ</span><span class="arr"></span></div>
+    <div class="row rv"><span class="idx">04</span><span class="title">Медицина, спорт, красота</span><span class="meta">Эксперты · Клиники · Бренды</span><span class="arr"></span></div>
+    <div class="row rv"><span class="idx">05</span><span class="title">Ритейл, HoReCa, сервис</span><span class="meta">Запуски · Соцсети</span><span class="arr"></span></div>
   </div>
   <p class="case-note rv">Часть наших клиентов: люди и компании, для которых тишина вокруг собственного имени важнее славы. Мы усиливаем их проекты, а не их персональную публичность, и не раскрываем сотрудничество ни в каком виде.</p>
 </section>
@@ -480,28 +499,29 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
     <span class="label rv">Восемь специалистов</span>
   </div>
   <div class="team">
-    <div class="member rv"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/animated_portrait.mp4" type="video/mp4"></video></div><h3>Андрей Шелест</h3><div class="role">Основатель · Стратегия</div><p>Позиционирование брендов и общая стратегия каждого проекта.</p></div>
-    <div class="member rv rv-d1"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/maria_animated_portrait (1).mp4" type="video/mp4"></video></div><h3>Мария Ковалёва</h3><div class="role">PR-директор</div><p>Редакции СМИ России и СНГ, питчинг, экспертные публикации.</p></div>
-    <div class="member rv rv-d2"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/dmitry_animated_portrait.mp4" type="video/mp4"></video></div><h3>Дмитрий Соколов</h3><div class="role">Руководитель SMM</div><p>Стратегии соцсетей, комьюнити, работа с блогерами.</p></div>
-    <div class="member rv rv-d3"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/ekaterina_animated_portrait.mp4" type="video/mp4"></video></div><h3>Екатерина Волкова</h3><div class="role">Главный редактор</div><p>Тексты для СМИ, соцсетей и сайтов: от идеи до вычитки.</p></div>
-    <div class="member rv"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/igor_animated_portrait.mp4" type="video/mp4"></video></div><h3>Игорь Новиков</h3><div class="role">Видеопродюсер</div><p>Съёмка, монтаж, продакшен, ведение практикумов.</p></div>
-    <div class="member rv rv-d1"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/anna_animated_portrait.mp4" type="video/mp4"></video></div><h3>Анна Лебедева</h3><div class="role">Арт-директор</div><p>Айдентика, дизайн сайтов, креативы кампаний.</p></div>
-    <div class="member rv rv-d2"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/vasily_animated_portrait (2).mp4" type="video/mp4"></video></div><h3>Василий Морозов</h3><div class="role">Ведущий разработчик</div><p>Сайты, магазины и приложения: от прототипа до запуска.</p></div>
-    <div class="member rv rv-d3"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/elizaveta_animated_portrait.mp4" type="video/mp4"></video></div><h3>Елизавета Крылова</h3><div class="role">Аккаунт-директор</div><p>Сроки, отчётность и связь: вы всегда знаете статус проекта.</p></div>
+    <div class="member rv"><div class="photo"><span>АШ</span></div><h3>Александр Шелест</h3><div class="role">Основатель · Стратегия</div><p>Позиционирование брендов и общая стратегия каждого проекта.</p></div>
+    <div class="member rv rv-d1"><div class="photo"><span>МК</span></div><h3>Мария Ковалёва</h3><div class="role">PR-директор</div><p>Редакции СМИ России и СНГ, питчинг, экспертные публикации.</p></div>
+    <div class="member rv rv-d2"><div class="photo"><span>ДС</span></div><h3>Дмитрий Соколов</h3><div class="role">Руководитель SMM</div><p>Стратегии соцсетей, комьюнити, работа с блогерами.</p></div>
+    <div class="member rv rv-d3"><div class="photo"><span>ЕВ</span></div><h3>Екатерина Волкова</h3><div class="role">Главный редактор</div><p>Тексты для СМИ, соцсетей и сайтов: от идеи до вычитки.</p></div>
+    <div class="member rv"><div class="photo"><span>ИН</span></div><h3>Игорь Новиков</h3><div class="role">Видеопродюсер</div><p>Съёмка, монтаж, продакшен, ведение практикумов.</p></div>
+    <div class="member rv rv-d1"><div class="photo"><span>АЛ</span></div><h3>Анна Лебедева</h3><div class="role">Арт-директор</div><p>Айдентика, дизайн сайтов, креативы кампаний.</p></div>
+    <div class="member rv rv-d2"><div class="photo"><span>СМ</span></div><h3>Сергей Морозов</h3><div class="role">Ведущий разработчик</div><p>Сайты, магазины и приложения: от прототипа до запуска.</p></div>
+    <div class="member rv rv-d3"><div class="photo"><span>ОК</span></div><h3>Ольга Крылова</h3><div class="role">Аккаунт-директор</div><p>Сроки, отчётность и связь: вы всегда знаете статус проекта.</p></div>
   </div>
-</section> 
+  <p class="case-note rv">Замените инициалы на реальные чёрно-белые портреты команды, снятые в едином стиле: один фон, один свет.</p>
+</section>
 
 <section class="film rv">
   <div class="film-frame">
     <span class="film-mark">Команда</span>
     <video muted loop playsinline preload="metadata"><source src="assets/video/agency.mp4" type="video/mp4"></video>
-    
+    <div class="film-cap"><span class="label">Жизнь агентства: съёмки, планёрки, офисы</span><span class="label">Слот · agency.mp4</span></div>
   </div>
 </section>
 
 <section class="offices">
-  <div class="office rv"><span class="label">Офис · 43.5855° N, 39.7231° E</span><div class="city">Сочи</div><p>Встречи по записи.</p></div>
-  <div class="office rv rv-d1"><span class="label">Офис · 55.7558° N, 37.6173° E</span><div class="city">Москва</div><p>Встречи по записи.</p></div>
+  <div class="office rv"><span class="label">Офис · 43.5855° N, 39.7231° E</span><div class="city">Сочи</div><p>Олимпийский просп., 1. Встречи по записи.</p></div>
+  <div class="office rv rv-d1"><span class="label">Офис · 55.7558° N, 37.6173° E</span><div class="city">Москва</div><p>Башня «ОКО», 1-й Красногвардейский пр-д, 21, стр. 2. Встречи по записи.</p></div>
 </section>
 
 <section class="cta">
@@ -536,12 +556,13 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
       <a href="mailto:hello@lunapr.ru">hello@lunapr.ru</a>
       <a href="https://t.me/lunapr_ru" rel="noopener">Telegram</a>
       <a href="contacts.html">Сочи · Москва</a>
+      <a href="privacy.html">Политика конфиденциальности</a>
     </div>
   </div>
   <div class="foot-bottom">
     <span>© 2026 Luna PR СНГ</span>
     <span id="clock">Сочи · Москва MSK</span>
-    <span>43.5855° N · 55.7558° N</span>
+    <span>43.5855° N, 39.7231° E · 55.7558° N, 37.6173° E</span>
     <span>lunapr.ru</span>
   </div>
 </footer>
@@ -726,10 +747,9 @@ function clk(){
 clk();setInterval(clk,20000);
 
 /* ---- видеослоты: включаются, когда файл на месте ---- */
-document.querySelectorAll('.film-frame video').forEach(v=>{
+document.querySelectorAll('.film-frame video, .hero-clip video').forEach(v=>{
   v.addEventListener('canplay',()=>{v.classList.add('ready');v.play().catch(()=>{});});
 });
-  document.querySelectorAll('.photo video').forEach(v=>{v.load();v.play().catch(()=>{});});
 
 /* ---- плавающее превью для строк кейсов ---- */
 let pv=null,pvV=null,pvCap=null,pvOn=false,pvX=0,pvY=0;
@@ -741,7 +761,7 @@ if(fine&&!reduced){
   document.querySelectorAll('a.row[data-video]').forEach(r=>{
     r.addEventListener('mouseenter',()=>{
       const f='assets/video/'+r.dataset.video;
-      pvCap.textContent='';
+      pvCap.textContent='Слот · '+r.dataset.video;
       if(pvV.getAttribute('src')!==f){pvV.classList.remove('ready');pvV.src=f;pvV.load();}
       pvV.play().catch(()=>{});
       pvOn=true;pv.classList.add('on');
@@ -751,14 +771,6 @@ if(fine&&!reduced){
   pvV.addEventListener('canplay',()=>pvV.classList.add('ready'));
   pvV.addEventListener('error',()=>pvV.classList.remove('ready'));
 }
-
-  /* ---- mobile: inline video thumbs ---- */
-  document.querySelectorAll('a.row[data-video]').forEach(r=>{
-      if(r.querySelector('.row-thumb'))return;
-      const t=document.createElement('span');t.className='row-thumb';
-      const rv=document.createElement('video');rv.muted=true;rv.loop=true;rv.playsInline=true;rv.autoplay=true;rv.preload='metadata';rv.setAttribute('src','assets/video/'+r.dataset.video);
-      t.appendChild(rv);r.appendChild(t);
-  });
 
 /* ---- инерционный скролл (десктоп) ---- */
 if(fine&&!reduced&&innerWidth>860){
