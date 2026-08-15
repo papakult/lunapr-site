@@ -426,6 +426,84 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .team{grid-template-columns:1fr}
   .hero-cities{gap:20px;flex-wrap:wrap}
 }
+
+/* ================= МОБИЛЬНАЯ ВЕРСИЯ · премиум-адаптация ================= */
+.row-thumb{display:none}
+@media (max-width:860px){
+  header{padding-left:max(var(--pad),env(safe-area-inset-left));padding-right:max(var(--pad),env(safe-area-inset-right));padding-top:env(safe-area-inset-top)}
+  .nav{min-height:76px}
+  .wordmark{font-size:16px;letter-spacing:.26em}
+  .burger{padding:10px 4px;-webkit-tap-highlight-color:transparent}
+
+  /* оверлей-меню: пронумерованные строки вместо простого списка ссылок */
+  .overlay-menu{padding:calc(84px + env(safe-area-inset-top)) var(--pad) calc(40px + env(safe-area-inset-bottom));justify-content:space-between}
+  .overlay-menu .burger{display:block;position:absolute;top:calc(22px + env(safe-area-inset-top));right:max(var(--pad),env(safe-area-inset-right))}
+  .ov-rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .ov-rows a{
+    display:flex;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);
+    font-family:var(--serif);font-size:clamp(28px,9vw,42px);line-height:1.2;color:var(--stone);
+    opacity:0;transform:translateY(16px);
+    transition:opacity .5s var(--ease),transform .5s var(--ease),color .4s;
+  }
+  .overlay-menu.open .ov-rows a{opacity:1;transform:none}
+  .overlay-menu.open .ov-rows a:nth-child(1){transition-delay:.08s}
+  .overlay-menu.open .ov-rows a:nth-child(2){transition-delay:.15s}
+  .overlay-menu.open .ov-rows a:nth-child(3){transition-delay:.22s}
+  .overlay-menu.open .ov-rows a:nth-child(4){transition-delay:.29s}
+  .ov-rows a:active{color:var(--bone)}
+  .ov-idx{font-family:var(--sans);font-size:12px;letter-spacing:.2em;color:var(--champagne)}
+  .ov-foot{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:32px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .6s var(--ease) .36s,transform .6s var(--ease) .36s;
+  }
+  .overlay-menu.open .ov-foot{opacity:1;transform:none}
+  .ov-foot a{font-size:13.5px;color:var(--bone);border-bottom:1px solid var(--line-strong);padding-bottom:2px}
+  .ov-foot .label{color:var(--faint)}
+
+  /* hero-clip: на мобильном не прячем, а даём кинематографичной лентой под текстом */
+  .hero-clip{display:block;position:static;width:100%;right:auto;top:auto;aspect-ratio:16/10;margin:32px 0 0}
+  .page-hero.has-clip{padding-right:var(--pad);min-height:auto}
+
+  /* тактильная обратная связь вместо ховера */
+  a.row:active{padding-left:14px;background:var(--ink-2)}
+  a.row:active::after{width:100%}
+  .action:active{border-color:var(--bone)}
+  .deliver div:active{background:var(--ink-2)}
+  .member:active .photo{filter:grayscale(.4)}
+  .cta a.big:active::after{background:var(--bone)}
+  .foot-cols a:active{color:var(--bone)}
+
+  /* строки услуг/кейсов: видео-миниатюра вместо ховер-стрелки */
+  .row{position:relative}
+  .row[data-video]{padding-right:70px}
+  .row[data-video] .row-thumb{
+    display:block;position:absolute;right:0;top:50%;transform:translateY(-50%);
+    width:56px;height:56px;overflow:hidden;border:1px solid var(--line-strong);background:var(--ink-2);
+  }
+  .row-thumb video{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .8s}
+  .row-thumb video.ready{opacity:1}
+
+  /* воздух и типографика под маленький экран */
+  .section{padding:clamp(60px,12vw,100px) var(--pad)}
+  .hero{padding-bottom:clamp(36px,8vw,64px)}
+  .measure{font-size:16px}
+  footer{padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+  .rv{transform:translateY(18px);transition-duration:.9s}
+
+  input,textarea,select{min-height:44px}
+  form .action{padding:14px 0}
+}
+@media (max-width:860px){
+  .foot-cols{grid-template-columns:1fr 1fr;gap:40px 24px}
+}
+@media (max-width:560px){
+  .foot-cols{grid-template-columns:1fr;gap:36px}
+}
+@media (max-width:400px){
+  .display-xl{font-size:clamp(38px,11.5vw,50px)}
+  .ov-rows a{font-size:clamp(24px,9.2vw,32px)}
+}
 </style>
 </head>
 <body>
@@ -444,12 +522,17 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   </div>
 </header>
 <div class="overlay-menu" id="ovmenu">
-  <button class="burger" id="mclose" style="display:block;position:absolute;top:30px;right:var(--pad)" aria-label="Закрыть меню">Закрыть</button>
-  <span class="label">Luna PR · СНГ</span>
-  <a href="agency.html">Агентство</a>
-  <a href="services.html">Услуги</a>
-  <a href="cases.html">Кейсы</a>
-  <a href="contacts.html">Контакты</a>
+  <button class="burger" id="mclose" aria-label="Закрыть меню">Закрыть</button>
+  <nav class="ov-rows" aria-label="Меню">
+    <a href="agency.html"><span class="ov-idx">01</span><span class="ov-title">Агентство</span></a>
+    <a href="services.html"><span class="ov-idx">02</span><span class="ov-title">Услуги</span></a>
+    <a href="cases.html"><span class="ov-idx">03</span><span class="ov-title">Кейсы</span></a>
+    <a href="contacts.html"><span class="ov-idx">04</span><span class="ov-title">Контакты</span></a>
+  </nav>
+  <div class="ov-foot">
+    <a href="mailto:hello@lunapr.ru">hello@lunapr.ru</a>
+    <span class="label">Сочи · Москва</span>
+  </div>
 </div>
 <div id="smooth">
 
@@ -774,6 +857,35 @@ if(fine&&!reduced&&innerWidth>860){
       requestAnimationFrame(sm);
     })();
   }
+}
+/* ---- мобильные видео-миниатюры строк (замена ховер-превью на тач) ---- */
+if(!fine){
+  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+    if(r.querySelector('.row-thumb'))return;
+    const th=document.createElement('span');th.className='row-thumb';
+    const rv=document.createElement('video');
+    rv.muted=true;rv.loop=true;rv.playsInline=true;rv.preload='none';
+    rv.src='assets/video/'+r.dataset.video;
+    rv.addEventListener('canplay',()=>rv.classList.add('ready'));
+    th.appendChild(rv);r.appendChild(th);
+  });
+  const thumbIo=new IntersectionObserver(es=>{
+    es.forEach(e=>{const v=e.target;if(e.isIntersecting){v.play().catch(()=>{});}else{v.pause();}});
+  },{threshold:.4});
+  document.querySelectorAll('.row-thumb video').forEach(v=>thumbIo.observe(v));
+}
+
+/* ---- пауза автовоспроизводимых видео вне экрана (экономия данных и батареи) ---- */
+const autoVideos=document.querySelectorAll('.hero-media video, .hero-clip video, .orbit-art video, .film-frame video');
+if(autoVideos.length){
+  const vio=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      const v=e.target;
+      if(e.isIntersecting){if(v.classList.contains('ready'))v.play().catch(()=>{});}
+      else{v.pause();}
+    });
+  },{threshold:.15});
+  autoVideos.forEach(v=>vio.observe(v));
 }
 })();
 </script>
