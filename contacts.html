@@ -594,6 +594,13 @@ else if(!sessionStorage.getItem('lp')){
   },28);
 }else{setTimeout(lift,150);}
 
+/* ---- снятие «черноты» перехода при возврате из bfcache ---- */
+addEventListener('pageshow',e=>{
+  if(e.persisted){
+    document.querySelectorAll('.veil.enter').forEach(v=>v.remove());
+  }
+});
+
 /* ---- переходы между страницами ---- */
 if(!reduced){
   document.querySelectorAll('a[href]').forEach(a=>{
