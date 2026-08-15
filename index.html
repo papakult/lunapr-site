@@ -516,6 +516,9 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 .label .n,.row .idx,.step::before,.ov-idx{
   text-shadow:-1px -1px 0 rgba(0,0,0,.55), 1px 1px 0 rgba(255,255,255,.06);
 }
+
+body.nav-open #mopen{opacity:0;pointer-events:none;transition:opacity .25s}
+body.nav-open header{pointer-events:none}
 </style>
 </head>
 <body>
@@ -711,7 +714,7 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
 /* ---- мобильное меню ---- */
 const ov=document.getElementById('ovmenu');
-function menu(open){ov.classList.toggle('open',open);document.body.style.overflow=open?'hidden':''}
+function menu(open){ov.classList.toggle('open',open);document.body.classList.toggle('nav-open',open);document.body.style.overflow=open?'hidden':''}
 document.getElementById('mopen')?.addEventListener('click',()=>menu(true));
 document.getElementById('mclose')?.addEventListener('click',()=>menu(false));
 ov?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu(false)));
