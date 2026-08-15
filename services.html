@@ -258,17 +258,18 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
 .phase-glyph circle{fill:none;stroke:var(--line-strong);stroke-width:.8}
 .phase-glyph path{fill:none;stroke:var(--champagne);stroke-width:.8}
 .hero-clip{
-  position:absolute;top:calc(84px + clamp(40px,7vw,90px));right:var(--pad);
-  width:clamp(320px,42vw,620px);aspect-ratio:6/5;overflow:hidden;
-  border:1px solid var(--line-strong);
-  background:radial-gradient(80% 100% at 30% 0%, #1b1915 0%, #0c0b09 70%);
+  position:absolute;inset:0;z-index:-1;overflow:hidden;background:#0a0908;
+}
+.hero-clip::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(16,15,13,.82) 0%, rgba(16,15,13,.42) 40%, rgba(16,15,13,.20) 62%, rgba(16,15,13,.6) 100%);
 }
 .hero-clip video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transition:opacity 1.2s var(--ease);filter:saturate(.85) contrast(1.02);
+  opacity:0;transition:opacity 1.6s var(--ease);filter:saturate(.85) contrast(1.02);
 }
 .hero-clip video.ready{opacity:1}
-.page-hero.has-clip{padding-right:clamp(360px,46vw,680px)}
+.page-hero.has-clip{min-height:100svh}
 .deliver{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .deliver div{background:var(--ink);padding:clamp(26px,3vw,44px);transition:background .5s}
 .deliver div:hover{background:var(--ink-2)}
@@ -420,7 +421,6 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .row .arr{display:none}
   .case-row{grid-template-columns:48px 1fr}
   .scroll-hint,.phase-glyph,.hero-clip{display:none}
-  .page-hero.has-clip{padding-right:var(--pad)}
 }
 @media (max-width:560px){
   .team{grid-template-columns:1fr}
@@ -461,9 +461,8 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .ov-foot a{font-size:13.5px;color:var(--bone);border-bottom:1px solid var(--line-strong);padding-bottom:2px}
   .ov-foot .label{color:var(--faint)}
 
-  /* hero-clip: на мобильном не прячем, а даём кинематографичной лентой под текстом */
-  .hero-clip{display:block;position:relative;width:100%;right:auto;top:auto;aspect-ratio:16/10;margin:32px 0 0}
-  .page-hero.has-clip{padding-right:var(--pad);min-height:auto}
+  /* hero-clip: на мобильном тоже видео на весь экран, текст поверх — как на первом слайде */
+  .hero-clip{display:block}
 
   /* тактильная обратная связь вместо ховера */
   a.row:active{padding-left:14px;background:var(--ink-2)}
