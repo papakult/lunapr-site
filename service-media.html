@@ -712,7 +712,7 @@ if(fine&&!reduced){
     document.querySelectorAll('a.row[data-video], .step[data-video]').forEach(r=>{
     r.addEventListener('mouseenter',()=>{
       const f='assets/video/'+r.dataset.video;
-      pvCap.textContent='Слот · '+r.dataset.video;
+      pvCap.textContent='';
               if(pvV.getAttribute('src')!==f){pvV.classList.remove('ready');pvV.src=f;pvV.load();}
       pvV.play().catch(()=>{});
       pvOn=true;pv.classList.add('on');
