@@ -495,6 +495,27 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .display-xl{font-size:clamp(38px,11.5vw,50px)}
   .ov-rows a{font-size:clamp(24px,9.2vw,32px)}
 }
+
+/* ================= ПРЕМИУМ-ДЕТАЛИ · свет, объём, гравировка ================= */
+.mask-line{position:relative}
+.mask-line::after{
+  content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:var(--champagne);opacity:0;pointer-events:none;
+}
+.loaded .mask-line::after{animation:lp-scan 1.3s var(--ease) forwards}
+.mask-line:nth-child(2)::after{animation-delay:.12s}
+.mask-line:nth-child(3)::after{animation-delay:.24s}
+@keyframes lp-scan{
+  0%{transform:translateY(0);opacity:0}
+  16%{opacity:.6}
+  82%{opacity:.42}
+  100%{transform:translateY(-108%);opacity:0}
+}
+
+/* гравировка: утопленные цифры и метки, будто вытиснены в бумаге */
+.label .n,.row .idx,.step::before,.ov-idx{
+  text-shadow:-1px -1px 0 rgba(0,0,0,.55), 1px 1px 0 rgba(255,255,255,.06);
+}
 </style>
 </head>
 <body>
@@ -925,6 +946,27 @@ if(autoVideos.length){
     });
   },{threshold:.15});
   autoVideos.forEach(v=>vio.observe(v));
+}
+/* ---- премиум: курсор как источник света + лёгкий 3D-наклон объектов ---- */
+if(fine&&!reduced){
+  const tiltEls=document.querySelectorAll('.fact,.deliver div,.member .photo,.film-frame,.hero-clip,.orbit-art');
+  const TILT=3,SHADOW=10;
+  tiltEls.forEach(el=>{
+    el.addEventListener('mousemove',e=>{
+      const r=el.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-.5;
+      const py=(e.clientY-r.top)/r.height-.5;
+      el.style.transition='none';
+      el.style.transform=`perspective(1200px) rotateX(${(-py*TILT).toFixed(2)}deg) rotateY(${(px*TILT).toFixed(2)}deg)`;
+      const sx=(px*SHADOW).toFixed(1),sy=(py*SHADOW+6).toFixed(1);
+      el.style.boxShadow=`${sx}px ${sy}px 22px -12px rgba(0,0,0,.55), inset ${(-px*SHADOW*.4).toFixed(1)}px ${(-py*SHADOW*.4).toFixed(1)}px 0 0 rgba(236,233,225,.07)`;
+    });
+    el.addEventListener('mouseleave',()=>{
+      el.style.transform='';el.style.boxShadow='';
+      el.style.transition='transform .5s var(--ease), box-shadow .5s var(--ease)';
+      setTimeout(()=>{el.style.transition=''},520);
+    });
+  });
 }
 })();
 </script>
