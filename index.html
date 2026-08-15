@@ -453,9 +453,8 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   <div class="hero-media" aria-hidden="true">
     <div class="poster"></div>
     <canvas id="moon-canvas"></canvas>
-    <!-- Положите сгенерированное видео в assets/hero.mp4 и постер в assets/hero.jpg: видео плавно перекроет 3D-сцену -->
-    <video autoplay muted loop playsinline poster="assets/hero.jpg">
-      <source src="assets/hero.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="assets/video/hero.mp4" type="video/mp4">
     </video>
   </div>
   <span class="label">PR-агентство полного цикла · Россия и СНГ</span>
