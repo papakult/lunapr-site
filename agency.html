@@ -236,6 +236,10 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
   content:"портрет · ч/б";position:absolute;bottom:14px;left:14px;
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#4a473f;
 }
+  .member .photo[style*="background-image"]::after{content:none}
+  .member .photo:has(video)::after{content:none}
+        .member .photo:has(source[src*="dmitry"]) video{transform:scale(1.2)}
+        .member .photo:has(source[src*="anna"]) video{transform:scale(1.35)}
 .member h3{font-family:var(--sans);font-weight:500;font-size:15.5px;margin-top:18px}
 .member .role{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--champagne);margin-top:4px}
 .member p{color:var(--stone);font-size:13.5px;margin-top:10px;line-height:1.6}
@@ -425,11 +429,13 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .team{grid-template-columns:1fr}
   .hero-cities{gap:20px;flex-wrap:wrap}
 }
+  .row-thumb{display:none}
+  @media(hover:none){.row{position:relative}.row-thumb{display:block;position:absolute;right:0;top:50%;transform:translateY(-50%);width:64px;height:64px;overflow:hidden;border:1px solid var(--line)}.row-thumb video{width:100%;height:100%;object-fit:cover;display:block}.row .meta{display:none}}
 </style>
 </head>
 <body>
 <div class="veil" id="veil"><span class="wordmark">Luna&nbsp;PR<span style="color:var(--stone)">&nbsp;·&nbsp;СНГ</span></span><span class="count" id="vcount">000</span></div>
-
+  
 <header>
   <div class="nav">
     <a class="wordmark" href="index.html">Luna&nbsp;PR<span>&nbsp;·&nbsp;СНГ</span></a>
@@ -484,11 +490,11 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
     <span class="label rv">Без имён, по направлениям</span>
   </div>
   <div class="rows">
-    <div class="row rv"><span class="idx">01</span><span class="title">Публичные персоны и политика</span><span class="meta">Личный бренд · Репутация</span><span class="arr"></span></div>
-    <div class="row rv"><span class="idx">02</span><span class="title">Промышленность и девелопмент</span><span class="meta">B2B · GR-контур</span><span class="arr"></span></div>
-    <div class="row rv"><span class="idx">03</span><span class="title">Финансы и инвестиции</span><span class="meta">Экспертиза · Деловые СМИ</span><span class="arr"></span></div>
-    <div class="row rv"><span class="idx">04</span><span class="title">Медицина, спорт, красота</span><span class="meta">Эксперты · Клиники · Бренды</span><span class="arr"></span></div>
-    <div class="row rv"><span class="idx">05</span><span class="title">Ритейл, HoReCa, сервис</span><span class="meta">Запуски · Соцсети</span><span class="arr"></span></div>
+<a class="row rv" href="services.html" data-video="press_conference_bw_loop.mp4"><span class="idx">01</span><span class="title">Публичные персоны и политика</span><span class="meta">Личный бренд · Репутация</span><span class="arr"></span></a>
+<a class="row rv" href="services.html" data-video="construction_site_bw_loop.mp4"><span class="idx">02</span><span class="title">Промышленность и девелопмент</span><span class="meta">B2B · GR-контур</span><span class="arr"></span></a>
+<a class="row rv" href="services.html" data-video="financial_district_bw_loop.mp4"><span class="idx">03</span><span class="title">Финансы и инвестиции</span><span class="meta">Экспертиза · Деловые СМИ</span><span class="arr"></span></a>
+<a class="row rv" href="services.html" data-video="private_clinic_bw_loop.mp4"><span class="idx">04</span><span class="title">Медицина, спорт, красота</span><span class="meta">Эксперты · Клиники · Бренды</span><span class="arr"></span></a>
+    <a class="row rv" href="services.html" data-video="restaurant_boutique_bw_loop.mp4"><span class="idx">05</span><span class="title">Ритейл, HoReCa, сервис</span><span class="meta">Запуски · Соцсети</span><span class="arr"></span></a>
   </div>
   <p class="case-note rv">Часть наших клиентов: люди и компании, для которых тишина вокруг собственного имени важнее славы. Мы усиливаем их проекты, а не их персональную публичность, и не раскрываем сотрудничество ни в каком виде.</p>
 </section>
@@ -499,23 +505,22 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
     <span class="label rv">Восемь специалистов</span>
   </div>
   <div class="team">
-    <div class="member rv"><div class="photo"><span>АШ</span></div><h3>Александр Шелест</h3><div class="role">Основатель · Стратегия</div><p>Позиционирование брендов и общая стратегия каждого проекта.</p></div>
-    <div class="member rv rv-d1"><div class="photo"><span>МК</span></div><h3>Мария Ковалёва</h3><div class="role">PR-директор</div><p>Редакции СМИ России и СНГ, питчинг, экспертные публикации.</p></div>
-    <div class="member rv rv-d2"><div class="photo"><span>ДС</span></div><h3>Дмитрий Соколов</h3><div class="role">Руководитель SMM</div><p>Стратегии соцсетей, комьюнити, работа с блогерами.</p></div>
-    <div class="member rv rv-d3"><div class="photo"><span>ЕВ</span></div><h3>Екатерина Волкова</h3><div class="role">Главный редактор</div><p>Тексты для СМИ, соцсетей и сайтов: от идеи до вычитки.</p></div>
-    <div class="member rv"><div class="photo"><span>ИН</span></div><h3>Игорь Новиков</h3><div class="role">Видеопродюсер</div><p>Съёмка, монтаж, продакшен, ведение практикумов.</p></div>
-    <div class="member rv rv-d1"><div class="photo"><span>АЛ</span></div><h3>Анна Лебедева</h3><div class="role">Арт-директор</div><p>Айдентика, дизайн сайтов, креативы кампаний.</p></div>
-    <div class="member rv rv-d2"><div class="photo"><span>СМ</span></div><h3>Сергей Морозов</h3><div class="role">Ведущий разработчик</div><p>Сайты, магазины и приложения: от прототипа до запуска.</p></div>
-    <div class="member rv rv-d3"><div class="photo"><span>ОК</span></div><h3>Ольга Крылова</h3><div class="role">Аккаунт-директор</div><p>Сроки, отчётность и связь: вы всегда знаете статус проекта.</p></div>
+    <div class="member rv"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/animated_portrait.mp4" type="video/mp4"></video></div><h3>Андрей Шелест</h3><div class="role">Основатель · Стратегия</div><p>Позиционирование брендов и общая стратегия каждого проекта.</p></div>
+    <div class="member rv rv-d1"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/maria_animated_portrait (1).mp4" type="video/mp4"></video></div><h3>Мария Ковалёва</h3><div class="role">PR-директор</div><p>Редакции СМИ России и СНГ, питчинг, экспертные публикации.</p></div>
+    <div class="member rv rv-d2"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/dmitry_animated_portrait.mp4" type="video/mp4"></video></div><h3>Дмитрий Соколов</h3><div class="role">Руководитель SMM</div><p>Стратегии соцсетей, комьюнити, работа с блогерами.</p></div>
+    <div class="member rv rv-d3"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/ekaterina_animated_portrait.mp4" type="video/mp4"></video></div><h3>Екатерина Волкова</h3><div class="role">Главный редактор</div><p>Тексты для СМИ, соцсетей и сайтов: от идеи до вычитки.</p></div>
+    <div class="member rv"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/igor_animated_portrait.mp4" type="video/mp4"></video></div><h3>Игорь Новиков</h3><div class="role">Видеопродюсер</div><p>Съёмка, монтаж, продакшен, ведение практикумов.</p></div>
+    <div class="member rv rv-d1"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/anna_animated_portrait.mp4" type="video/mp4"></video></div><h3>Анна Лебедева</h3><div class="role">Арт-директор</div><p>Айдентика, дизайн сайтов, креативы кампаний.</p></div>
+    <div class="member rv rv-d2"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/vasily_animated_portrait (2).mp4" type="video/mp4"></video></div><h3>Василий Морозов</h3><div class="role">Ведущий разработчик</div><p>Сайты, магазины и приложения: от прототипа до запуска.</p></div>
+    <div class="member rv rv-d3"><div class="photo"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"><source src="assets/team/elizaveta_animated_portrait.mp4" type="video/mp4"></video></div><h3>Елизавета Крылова</h3><div class="role">Аккаунт-директор</div><p>Сроки, отчётность и связь: вы всегда знаете статус проекта.</p></div>
   </div>
-  <p class="case-note rv">Замените инициалы на реальные чёрно-белые портреты команды, снятые в едином стиле: один фон, один свет.</p>
-</section>
+</section> 
 
 <section class="film rv">
   <div class="film-frame">
     <span class="film-mark">Команда</span>
     <video muted loop playsinline preload="metadata"><source src="assets/video/agency.mp4" type="video/mp4"></video>
-    <div class="film-cap"><span class="label">Жизнь агентства: съёмки, планёрки, офисы</span><span class="label">Слот · agency.mp4</span></div>
+    
   </div>
 </section>
 
@@ -750,6 +755,7 @@ clk();setInterval(clk,20000);
 document.querySelectorAll('.film-frame video, .hero-clip video').forEach(v=>{
   v.addEventListener('canplay',()=>{v.classList.add('ready');v.play().catch(()=>{});});
 });
+  document.querySelectorAll('.photo video').forEach(v=>{v.load();v.play().catch(()=>{});});
 
 /* ---- плавающее превью для строк кейсов ---- */
 let pv=null,pvV=null,pvCap=null,pvOn=false,pvX=0,pvY=0;
@@ -761,7 +767,7 @@ if(fine&&!reduced){
   document.querySelectorAll('a.row[data-video]').forEach(r=>{
     r.addEventListener('mouseenter',()=>{
       const f='assets/video/'+r.dataset.video;
-      pvCap.textContent='Слот · '+r.dataset.video;
+      pvCap.textContent='';
       if(pvV.getAttribute('src')!==f){pvV.classList.remove('ready');pvV.src=f;pvV.load();}
       pvV.play().catch(()=>{});
       pvOn=true;pv.classList.add('on');
@@ -771,6 +777,14 @@ if(fine&&!reduced){
   pvV.addEventListener('canplay',()=>pvV.classList.add('ready'));
   pvV.addEventListener('error',()=>pvV.classList.remove('ready'));
 }
+
+  /* ---- mobile: inline video thumbs ---- */
+  document.querySelectorAll('a.row[data-video]').forEach(r=>{
+      if(r.querySelector('.row-thumb'))return;
+      const t=document.createElement('span');t.className='row-thumb';
+      const rv=document.createElement('video');rv.muted=true;rv.loop=true;rv.playsInline=true;rv.autoplay=true;rv.preload='metadata';rv.setAttribute('src','assets/video/'+r.dataset.video);
+      t.appendChild(rv);r.appendChild(t);
+  });
 
 /* ---- инерционный скролл (десктоп) ---- */
 if(fine&&!reduced&&innerWidth>860){
