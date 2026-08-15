@@ -251,6 +251,11 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
 .page-hero .label{margin-bottom:30px}
 .page-hero h1{max-width:14ch}
 .page-hero .measure{margin-top:36px}
+.page-hero.has-clip .label,.page-hero.has-clip h1,.page-hero.has-clip .measure{
+  text-shadow:0 1px 3px rgba(0,0,0,.9),0 10px 30px rgba(0,0,0,.55);
+}
+.page-hero.has-clip .label{color:#d8cfae}
+.page-hero.has-clip .measure{color:#d6d2c8}
 .phase-glyph{
   position:absolute;top:calc(84px + clamp(60px,10vw,130px));right:var(--pad);
   width:clamp(56px,8vw,110px);opacity:.85;
@@ -263,7 +268,7 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
 }
 .hero-clip::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(16,15,13,.82) 0%, rgba(16,15,13,.42) 40%, rgba(16,15,13,.20) 62%, rgba(16,15,13,.6) 100%);
+  background:linear-gradient(180deg, rgba(10,9,8,.92) 0%, rgba(10,9,8,.86) 28%, rgba(10,9,8,.80) 48%, rgba(10,9,8,.62) 68%, rgba(10,9,8,.32) 86%, rgba(10,9,8,.58) 100%);
 }
 .hero-clip video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
