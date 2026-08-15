@@ -270,7 +270,7 @@ a.row:hover .arr{transform:translateX(10px);color:var(--bone)}
   opacity:0;transition:opacity 1.2s var(--ease);filter:saturate(.85) contrast(1.02) grayscale(1);
 }
 .hero-clip video.ready{opacity:1}
-.page-hero.has-clip{padding-right:clamp(360px,46vw,680px)}
+.page-hero.has-clip{padding-right:clamp(360px,46vw,680px);min-height:clamp(480px,58vw,760px)}
 
 .deliver{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .deliver div{background:var(--ink);padding:clamp(26px,3vw,44px);transition:background .5s}
@@ -422,7 +422,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .row .arr{display:none}
   .case-row{grid-template-columns:48px 1fr}
   .scroll-hint,.phase-glyph,.hero-clip{display:none}
-  .page-hero.has-clip{padding-right:var(--pad)}
+  .page-hero.has-clip{padding-right:var(--pad);min-height:auto}
 }
 @media (max-width:560px){
   .team{grid-template-columns:1fr}
