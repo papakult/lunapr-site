@@ -462,7 +462,7 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   .ov-foot .label{color:var(--faint)}
 
   /* hero-clip: на мобильном не прячем, а даём кинематографичной лентой под текстом */
-  .hero-clip{display:block;position:static;width:100%;right:auto;top:auto;aspect-ratio:16/10;margin:32px 0 0}
+  .hero-clip{display:block;position:relative;width:100%;right:auto;top:auto;aspect-ratio:16/10;margin:32px 0 0}
   .page-hero.has-clip{padding-right:var(--pad);min-height:auto}
 
   /* тактильная обратная связь вместо ховера */
@@ -881,7 +881,7 @@ if(autoVideos.length){
   const vio=new IntersectionObserver(es=>{
     es.forEach(e=>{
       const v=e.target;
-      if(e.isIntersecting){if(v.classList.contains('ready'))v.play().catch(()=>{});}
+      if(e.isIntersecting){v.play().catch(()=>{});}
       else{v.pause();}
     });
   },{threshold:.15});
