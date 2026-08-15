@@ -463,7 +463,9 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
   <h1 class="display-l"><span class="mask-line"><span>Публикации</span></span><span class="mask-line"><span>в СМИ</span></span></h1>
   <p class="measure rv on rv-d3">Готовим экспертные материалы, комментарии и истории брендов, затем размещаем их в изданиях России и СНГ. Фокус: русскоязычные медиа, где живёт ваша аудитория. Для отдельных задач подключаем зарубежные площадки.</p>
   <div class="hero-clip rv" aria-hidden="true">
-    <canvas id="moon-canvas"></canvas>
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="assets/video/media-hero.mp4" type="video/mp4">
+    </video>
   </div>
 </section>
 
@@ -665,66 +667,10 @@ requestAnimationFrame(loop);
 const vid=document.querySelector('.hero-media video');
 if(vid){vid.addEventListener('canplay',()=>vid.classList.add('ready'));}
 
-/* ---- 3D луна (WebGL, шейдер) ---- */
-const cnv=document.getElementById('moon-canvas');
-if(cnv&&!reduced&&window.THREE){
-  try{
-    const R=new THREE.WebGLRenderer({canvas:cnv,alpha:true,antialias:true});
-    R.setPixelRatio(Math.min(devicePixelRatio,2));
-    const S=new THREE.Scene();
-    const C=new THREE.PerspectiveCamera(34,1,.1,50);C.position.z=6;
-    const mat=new THREE.ShaderMaterial({
-      uniforms:{uT:{value:0},uL:{value:new THREE.Vector3(-.75,.35,.55)}},
-      vertexShader:`varying vec3 vN;varying vec3 vP;
-        void main(){vN=normalize(normalMatrix*normal);vP=position;
-        gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
-      fragmentShader:`varying vec3 vN;varying vec3 vP;uniform float uT;uniform vec3 uL;
-        float h(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}
-        float n(vec3 p){vec3 i=floor(p);vec3 f=fract(p);f=f*f*(3.-2.*f);
-          return mix(mix(mix(h(i),h(i+vec3(1,0,0)),f.x),mix(h(i+vec3(0,1,0)),h(i+vec3(1,1,0)),f.x),f.y),
-                     mix(mix(h(i+vec3(0,0,1)),h(i+vec3(1,0,1)),f.x),mix(h(i+vec3(0,1,1)),h(i+vec3(1,1,1)),f.x),f.y),f.z);}
-        void main(){
-          vec3 N=normalize(vN);
-          float f=n(vP*3.2)*.55+n(vP*7.5)*.3+n(vP*16.)*.15;   /* лунная фактура */
-          float crat=smoothstep(.42,.58,n(vP*4.7));
-          vec3 base=mix(vec3(.075,.072,.065),vec3(.16,.155,.14),f);
-          base=mix(base,base*.7,crat*.5);
-          vec3 L=normalize(uL);                                 /* свет тянется к курсору */
-          float d=clamp(dot(N,L),0.,1.);
-          d=pow(d,1.35);
-          float rim=pow(1.-clamp(dot(N,vec3(0.,0.,1.)),0.,1.),2.6);
-          vec3 col=base*(0.045+d*1.25)+vec3(.925,.914,.882)*rim*.10;
-          gl_FragColor=vec4(col,1.);}`
-    });
-    const moon=new THREE.Mesh(new THREE.SphereGeometry(1.55,128,128),mat);
-    S.add(moon);
-    let mx=0,my=0;
-    addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5);},{passive:true});
-    function size(){
-      const r=cnv.parentElement.getBoundingClientRect();
-      R.setSize(r.width,r.height,false);
-      C.aspect=r.width/r.height;
-      moon.position.x=0;
-      moon.position.y=.1;
-      C.updateProjectionMatrix();
-    }
-    size();addEventListener('resize',size);
-    let vis=true;
-    new IntersectionObserver(es=>{vis=es[0].isIntersecting},{threshold:0}).observe(cnv);
-    const L=mat.uniforms.uL.value;
-    (function tick(t){
-      if(vis){
-        moon.rotation.y=t*.00006+mx*.4;
-        moon.rotation.x=my*.2;
-        L.x+=((mx*2.2-.7)-L.x)*.06;
-        L.y+=((-my*1.6+.35)-L.y)*.06;
-        L.z+=(.6-L.z)*.06;
-        R.render(S,C);
-      }
-      requestAnimationFrame(tick);
-    })(0);
-  }catch(e){/* нет WebGL: остаётся фон */}
-}
+/* ---- видео в шапке: включаем, когда файл на месте ---- */
+document.querySelectorAll('.hero-clip video').forEach(v=>{
+  v.addEventListener('canplay',()=>{v.classList.add('ready');v.play().catch(()=>{});});
+});
 
 /* ---- живое время офисов ---- */
 const clockEl=document.getElementById('clock');
