@@ -1,0 +1,75 @@
+/* ЛУНА ПР СНГ · premium mobile layer · активен только на ≤860px */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap');
+
+.pm-progress,.pm-tabbar{display:none}
+
+@media (max-width:860px){
+
+  /* ---------- типографика: третий голос, курсивный сериф ---------- */
+  em{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+    font-size:1.14em;letter-spacing:.012em;
+  }
+  .label .n,.section-head .label .n{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+    font-size:1.35em;letter-spacing:.04em;vertical-align:-.06em;
+  }
+  .row .idx{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+    font-size:17px;color:var(--champagne);
+  }
+  h1,h2{text-wrap:balance}
+  .label{letter-spacing:.31em}
+  .measure{line-height:1.82}
+
+  /* ---------- строки-индексы как список дорогого приложения ---------- */
+  .rows .row{
+    -webkit-tap-highlight-color:transparent;
+    transition:background .45s var(--ease), padding-left .45s var(--ease);
+  }
+  .rows .row:active{background:var(--ink-2);padding-left:10px}
+  .action{-webkit-tap-highlight-color:transparent;transition:opacity .45s var(--ease), letter-spacing .45s var(--ease)}
+  .action:active{opacity:.62}
+  .big{-webkit-tap-highlight-color:transparent}
+
+  /* ---------- тонкая линия прогресса чтения ---------- */
+  .pm-progress{
+    display:block;position:fixed;top:0;left:0;height:2px;width:100%;z-index:70;
+    background:var(--champagne);transform-origin:0 50%;transform:scaleX(0);
+    pointer-events:none;
+  }
+
+  /* ---------- нижний tab-bar приложения ---------- */
+  .pm-tabbar{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:54;
+    border-top:1px solid var(--line-strong);
+    background:rgba(16,15,13,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    padding-bottom:env(safe-area-inset-bottom);
+    transform:translateY(0);transition:transform .55s var(--ease);
+  }
+  .pm-tabbar.pm-hide{transform:translateY(110%)}
+  .pm-tabbar a{
+    flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;
+    padding:13px 0 11px;position:relative;
+    font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);
+    -webkit-tap-highlight-color:transparent;transition:color .45s var(--ease);
+  }
+  .pm-tabbar a::before{content:"";width:3px;height:3px;background:transparent;transition:background .45s var(--ease)}
+  .pm-tabbar a.pm-active{color:var(--bone)}
+  .pm-tabbar a.pm-active::before{background:var(--champagne)}
+  .pm-tabbar a:active{color:var(--bone)}
+  body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}
+  .hero{padding-bottom:calc(84px + env(safe-area-inset-bottom))!important}
+
+  @media (prefers-reduced-motion:reduce){
+    .pm-tabbar,.pm-tabbar a,.pm-tabbar a::before,.rows .row,.action{transition:none}
+  }
+}
+
+/* очень низкие экраны: сжать hero, чтобы CTA не уходила под tab-bar */
+@media (max-width:860px) and (max-height:640px){
+  .hero-cities{display:none!important}
+  .hero .label{margin-bottom:8px!important}
+  .hero-foot{margin-top:10px!important}
+  .hero-cta{margin-top:10px!important}
+}
