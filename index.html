@@ -2,6 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ЛУНА ПР СНГ — PR-агентство | СМИ, репутация, SMM и Digital</title>
 <meta name="description" content="ЛУНА ПР СНГ — PR- и digital-агентство. Публикации в СМИ России и мира, управление репутацией, SMM, создание сайтов и продвижение бизнеса и экспертов.">
@@ -14,17 +16,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100f0d'/%3E%3Cpath d='M21 4a12 12 0 1 0 0 24 9.5 9.5 0 1 1 0-24z' fill='%23b9a47c'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100f0d'/%3E%3Cpath d='M21 4a12 12 0 1 0 0 24 9.5 9.5 0 1 1 0-24z' fill='%23b9a47c'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/premium-mobile.css">
 <link rel="stylesheet" href="assets/007a-signature.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"ЛУНА ПР СНГ","url":"https://lunapr.ru/",
-"description":"PR- и digital-агентство для бизнеса и экспертов: публикации в СМИ России и мира, управление репутацией, SMM, сайты и digital-продвижение.",
-"areaServed":["RU","KZ","BY","UZ","AM","AZ","KG"]}
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script src="/assets/vendor-three-r128.min.js"></script>
 <style>
 :root{
   --ink:#100f0d;
@@ -531,6 +526,8 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 body.nav-open #mopen{opacity:0;pointer-events:none;transition:opacity .25s}
 body.nav-open header{pointer-events:none}
 </style>
+<link rel="stylesheet" href="/assets/demo-fonts.css">
+<link rel="stylesheet" href="/assets/demo-mode.css">
 </head>
 <body>
 <div class="veil" id="veil"><span class="wordmark">ЛУНА ПР<span style="color:var(--stone)">&nbsp;СНГ</span></span><span class="count" id="vcount">000</span></div>
@@ -556,7 +553,7 @@ body.nav-open header{pointer-events:none}
     <a href="contacts.html"><span class="ov-idx">04</span><span class="ov-title">Контакты</span></a>
   </nav>
   <div class="ov-foot">
-    <a href="mailto:hello@lunapr.ru">hello@lunapr.ru</a>
+    <a href="privacy.html" >О демонстрационном проекте</a>
     <span class="label">Россия · СНГ</span>
   </div>
 </div>
@@ -580,7 +577,7 @@ body.nav-open header{pointer-events:none}
     <p><strong>Репутация, которую слышно.</strong> Публикации в СМИ России и мира, управление репутацией, SMM, создание сайтов и digital-продвижение бизнеса и экспертов.</p>
     <div class="hero-cities"><span>Россия</span><span>СНГ</span><span>Международные проекты</span></div>
   </div>
-  <div class="hero-cta"><a class="action rv on rv-d3" href="contacts.html">Получить PR-стратегию <i>&rarr;</i></a></div>
+  <div class="hero-cta"><a class="action rv on rv-d3" href="contacts.html">Смотреть концепцию <i>&rarr;</i></a></div>
   <div class="scroll-hint" aria-hidden="true"></div>
 </section>
 
@@ -670,7 +667,7 @@ body.nav-open header{pointer-events:none}
 
 <section class="cta">
   <span class="label rv">Следующий шаг</span>
-  <div><a class="big rv rv-d1" href="contacts.html">Обсудить проект</a></div>
+  <div><a class="big rv rv-d1" href="contacts.html">О проекте</a></div>
   <p class="rv rv-d2">Расскажите о задаче: ответим в течение рабочего дня и предложим первый шаг.</p>
 </section>
 </main>
@@ -697,11 +694,10 @@ body.nav-open header{pointer-events:none}
       <a href="service-education.html">Обучение</a>
     </div>
     <div>
-      <h4>Связь</h4>
-      <a href="mailto:hello@lunapr.ru">hello@lunapr.ru</a>
-      <a href="https://t.me/lunapr_ru" rel="noopener">Telegram</a>
+      <h4>О проекте</h4>
+      <a href="privacy.html" >О демонстрационном проекте</a>
       <a href="contacts.html">Россия · СНГ</a>
-      
+
     </div>
   </div>
   <div class="foot-bottom">
@@ -709,7 +705,7 @@ body.nav-open header{pointer-events:none}
     <span id="clock">МСК —:—</span>
     <span>Россия · СНГ · Онлайн</span>
     <span>lunapr.ru</span>
-    <a class="site-credit" href="https://007-a.ru/?utm_source=lunapr.ru&amp;utm_medium=footer&amp;utm_campaign=signature" target="_blank" rel="noopener" aria-label="Разработка сайта — 007—A">
+    <a class="site-credit" href="https://007-a.ru/" target="_blank" rel="noopener" aria-label="Разработка сайта — 007—A">
       <span>Разработка сайта · <span class="site-credit__name">007—A</span></span><span class="site-credit__arrow" aria-hidden="true">↗</span>
     </a>
   </div>
@@ -994,5 +990,6 @@ if(fine&&!reduced){
 })();
 </script>
 <script src="assets/premium-mobile.js" defer></script>
+<a class="demo-mode-note" href="/privacy.html">Демонстрационный проект · Прием заявок отключен</a>
 </body>
 </html>

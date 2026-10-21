@@ -1,0 +1,52 @@
+[
+  {
+    "url": "https://fonts.gstatic.com/s/golostext/v7/q5uCsoe9Lv5t7Meb31EcExN8hK5SAMo.woff2",
+    "file": "assets/fonts/f8d71091110f0113ba8b.woff2",
+    "sha256": "f8d71091110f0113ba8bd16bee2ac68b51dd6491c5b9404e9fbb82b20ae632f1"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/golostext/v7/q5uCsoe9Lv5t7Meb31EcExd8hK5SAMqbpw.woff2",
+    "file": "assets/fonts/2f175b8fc40ed4e82674.woff2",
+    "sha256": "2f175b8fc40ed4e826742879f92ec903256fc2612d8d95c7c287232fd7138e4b"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/prata/v22/6xKhdSpbNNCT-sWCCm7bLnwIcOM.woff2",
+    "file": "assets/fonts/4430b5c7fa62fe0508aa.woff2",
+    "sha256": "4430b5c7fa62fe0508aa468a1ceed71cfa2bb9710ba18c004aa95a379e18f00c"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/prata/v22/6xKhdSpbNNCT-sWPCm7bLnwI.woff2",
+    "file": "assets/fonts/8585ed0b108281be14a4.woff2",
+    "sha256": "8585ed0b108281be14a427c955622449d5d422d0941fc9510cd4e755df771630"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/golostext/v7/q5uCsoe9Lv5t7Meb31EcEx18hK5SAMqbpw.woff2",
+    "file": "assets/fonts/90256a7b8eb3b6b7b1c8.woff2",
+    "sha256": "90256a7b8eb3b6b7b1c8f8aeb0e80eed7980a411d8c49faf7958fef6951ba863"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/prata/v22/6xKhdSpbNNCT-sWLCm7bLnwIcOM.woff2",
+    "file": "assets/fonts/a334ddd4e1590fa35014.woff2",
+    "sha256": "a334ddd4e1590fa350148f5b415af21b062db55519ba7b5098aac217ad9badf8"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/golostext/v7/q5uCsoe9Lv5t7Meb31EcEx58hK5SAMqbpw.woff2",
+    "file": "assets/fonts/10aa879203c4b62f6184.woff2",
+    "sha256": "10aa879203c4b62f61841bdeee64a2ca5d97f1cf21e717f45c96914ce7629710"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/prata/v22/6xKhdSpbNNCT-sWACm7bLnwIcOM.woff2",
+    "file": "assets/fonts/debcc22474c88ba96e78.woff2",
+    "sha256": "debcc22474c88ba96e7816496d4a1aefd5d7ce6de45a0d938a86e84f9b447804"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd5LDfOjw.ttf",
+    "file": "assets/fonts/8ddad6fd245858b13f48.woff2",
+    "sha256": "8ddad6fd245858b13f48aeb9977c0f2531469571ca6b7a98ef490d7f549ade58"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd5wDDOjw.ttf",
+    "file": "assets/fonts/14efb9443652199ade5b.woff2",
+    "sha256": "14efb9443652199ade5bc6ba8637b4084acce40a58368a3808f84f55667e3e90"
+  }
+]

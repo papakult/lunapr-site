@@ -2,6 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Контакты · ЛУНА ПР СНГ</title>
 <meta name="description" content="Свяжитесь с ЛУНА ПР СНГ: работаем онлайн по всей России и СНГ. hello@lunapr.ru">
@@ -14,9 +16,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100f0d'/%3E%3Cpath d='M21 4a12 12 0 1 0 0 24 9.5 9.5 0 1 1 0-24z' fill='%23b9a47c'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100f0d'/%3E%3Cpath d='M21 4a12 12 0 1 0 0 24 9.5 9.5 0 1 1 0-24z' fill='%23b9a47c'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/premium-mobile.css">
 <link rel="stylesheet" href="assets/007a-signature.css">
 
@@ -549,6 +548,8 @@ footer{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) var(--pad)
 body.nav-open #mopen{opacity:0;pointer-events:none;transition:opacity .25s}
 body.nav-open header{pointer-events:none}
 </style>
+<link rel="stylesheet" href="/assets/demo-fonts.css">
+<link rel="stylesheet" href="/assets/demo-mode.css">
 </head>
 <body>
 <div class="veil" id="veil"><span class="wordmark">ЛУНА ПР<span style="color:var(--stone)">&nbsp;СНГ</span></span><span class="count" id="vcount">000</span></div>
@@ -574,7 +575,7 @@ body.nav-open header{pointer-events:none}
     <a href="contacts.html"><span class="ov-idx">04</span><span class="ov-title">Контакты</span></a>
   </nav>
   <div class="ov-foot">
-    <a href="mailto:hello@lunapr.ru">hello@lunapr.ru</a>
+    <a href="privacy.html" >О демонстрационном проекте</a>
     <span class="label">Россия · СНГ</span>
   </div>
 </div>
@@ -583,46 +584,32 @@ body.nav-open header{pointer-events:none}
 <main>
 <section class="page-hero">
   <span class="label">Контакты</span>
-  <h1 class="display-xl"><span class="mask-line"><span>Поговорим</span></span></h1>
+  <h1 class="display-xl"><span class="mask-line"><span>О проекте</span></span></h1>
 </section>
 
 <section class="section" style="padding-top:0">
   <div class="contact-grid">
     <div>
-      <p class="measure rv">Напишите пару строк о задаче: ответим в течение рабочего дня и предложим первый шаг. По запросу подписываем NDA до первого содержательного разговора.</p>
+      <p class="measure rv">Концепция страницы контактов сохранена как часть портфолио. Прием обращений на этом сайте отключен.</p>
       <div style="margin:48px 0">
-        <a class="action rv" href="mailto:hello@lunapr.ru" style="font-size:15px;letter-spacing:.12em">hello@lunapr.ru <i>&rarr;</i></a>
+        <a href="privacy.html" class="action rv"  style="font-size:15px;letter-spacing:.12em">О демонстрационном проекте</a>
       </div>
       <div class="rows rv">
         <div class="row" style="grid-template-columns:1fr auto">
           <span class="title" style="font-size:clamp(22px,2.6vw,32px)">Россия и СНГ</span>
-          <span class="meta">Работаем онлайн</span>
+          <span class="meta">Пример интерфейса</span>
         </div>
         <div class="row" style="grid-template-columns:1fr auto">
           <span class="title" style="font-size:clamp(22px,2.6vw,32px)">Встречи</span>
-          <span class="meta">По предварительной договорённости</span>
+          <span class="meta">Демонстрационная версия</span>
         </div>
         <div class="row" style="grid-template-columns:1fr auto">
-          <span class="title" style="font-size:clamp(22px,2.6vw,32px)">Telegram</span>
-          <span class="meta"><a href="https://t.me/lunapr_ru" rel="noopener">@lunapr_ru</a></span>
+          <span class="title" style="font-size:clamp(22px,2.6vw,32px)">Формат</span>
+          <span class="meta"><a href="privacy.html"  rel="noopener">О демонстрационном проекте</a></span>
         </div>
       </div>
     </div>
-    <form class="rv rv-d1" id="contact-form" action="https://formspree.io/f/xvkpboqd" method="POST">
-      <input type="hidden" name="_subject" value="Новая заявка с lunapr.ru">
-      <div class="field"><input id="f-name" type="text" name="name" placeholder=" " required><label for="f-name">Имя</label></div>
-      <div class="field"><input id="f-contact" type="text" name="contact" placeholder=" " required><label for="f-contact">Контакт</label></div>
-      <div class="field field-select"><label for="f-service">Задача</label>
-        <select id="f-service" name="service">
-          <option>Публикации и PR в СМИ</option><option>SMM и социальные сети</option><option>Контент и продакшен</option>
-          <option>Сайты и digital</option><option>Обучение и консалтинг</option><option>Комплексный PR</option>
-        </select>
-      </div>
-      <div class="field"><textarea id="f-msg" name="message" placeholder=" "></textarea><label for="f-msg">О проекте</label></div>
-      <label class="consent"><input type="checkbox" name="consent" required><span>Согласен(-на) на обработку персональных данных</span></label>
-      <button class="action" type="submit">Отправить <i>&rarr;</i></button>
-      <p class="form-note" id="form-note">Форма отправляется напрямую на hello@lunapr.ru через Formspree.</p>
-    </form>
+    <section class="rv rv-d1" aria-labelledby="demo-contact-title"><span class="label">Портфолио</span><h2 id="demo-contact-title" style="font:400 clamp(30px,4vw,48px)/1.15 Prata,serif;margin:24px 0">Демонстрационный проект</h2><p class="measure">Здесь показан пример сайта PR-агентства. Формы и отправка заявок отключены, контактные данные и файлы не запрашиваются.</p><a class="action" href="cases.html" style="margin-top:32px">Смотреть кейсы <i>&rarr;</i></a></section>
   </div>
 </section>
 </main>
@@ -650,11 +637,10 @@ body.nav-open header{pointer-events:none}
       <a href="service-education.html">Обучение</a>
     </div>
     <div>
-      <h4>Связь</h4>
-      <a href="mailto:hello@lunapr.ru">hello@lunapr.ru</a>
-      <a href="https://t.me/lunapr_ru" rel="noopener">Telegram</a>
+      <h4>О проекте</h4>
+      <a href="privacy.html" >О демонстрационном проекте</a>
       <a href="contacts.html">Россия · СНГ</a>
-      
+
     </div>
   </div>
   <div class="foot-bottom">
@@ -662,7 +648,7 @@ body.nav-open header{pointer-events:none}
     <span id="clock">МСК —:—</span>
     <span>Россия · СНГ · Онлайн</span>
     <span>lunapr.ru</span>
-    <a class="site-credit" href="https://007-a.ru/?utm_source=lunapr.ru&amp;utm_medium=footer&amp;utm_campaign=signature" target="_blank" rel="noopener" aria-label="Разработка сайта — 007—A">
+    <a class="site-credit" href="https://007-a.ru/" target="_blank" rel="noopener" aria-label="Разработка сайта — 007—A">
       <span>Разработка сайта · <span class="site-credit__name">007—A</span></span><span class="site-credit__arrow" aria-hidden="true">↗</span>
     </a>
   </div>
@@ -895,39 +881,6 @@ if(fine&&!reduced&&innerWidth>860){
   }
 }
 
-/* ---- отправка формы контактов через Formspree (AJAX, без перезагрузки страницы) ---- */
-const cform=document.getElementById('contact-form');
-if(cform){
-  cform.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const btn=cform.querySelector('.action');
-    const note=document.getElementById('form-note');
-    const original=btn.innerHTML;
-    btn.disabled=true;
-    btn.innerHTML='Отправка… <i>&rarr;</i>';
-    note.classList.remove('ok','err');
-    try{
-      const res=await fetch(cform.action,{
-        method:'POST',
-        headers:{'Accept':'application/json'},
-        body:new FormData(cform)
-      });
-      if(res.ok){
-        cform.reset();
-        note.textContent='Спасибо! Заявка отправлена — ответим в течение рабочего дня.';
-        note.classList.add('ok');
-      }else{
-        throw new Error('send failed');
-      }
-    }catch(err){
-      note.textContent='Не получилось отправить через форму. Напишите нам напрямую: hello@lunapr.ru';
-      note.classList.add('err');
-    }finally{
-      btn.disabled=false;
-      btn.innerHTML=original;
-    }
-  });
-}
 /* ---- мобильные видео-миниатюры строк (замена ховер-превью на тач) ---- */
 if(!fine){
   document.querySelectorAll('a.row[data-video]').forEach(r=>{
@@ -981,5 +934,6 @@ if(fine&&!reduced){
 })();
 </script>
 <script src="assets/premium-mobile.js" defer></script>
+<a class="demo-mode-note" href="/privacy.html">Демонстрационный проект · Прием заявок отключен</a>
 </body>
 </html>
